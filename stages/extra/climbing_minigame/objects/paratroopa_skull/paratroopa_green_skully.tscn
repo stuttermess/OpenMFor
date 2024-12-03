@@ -1,0 +1,110 @@
+[gd_scene load_steps=17 format=4]
+
+[ext_resource type="Script" path="res://stages/extra/climbing_minigame/objects/paratroopa_skull/paratroopa_green_skully.gd" id="1"]
+[ext_resource type="Script" path="res://engine/scripts/nodes/enemies/enemy_attacked.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://oe7i3cief0g" path="res://engine/objects/enemies/_dead/enemy_killed.tscn" id="3"]
+[ext_resource type="Script" path="res://engine/objects/enemies/_dead/prefabs/do_killed.gd" id="4"]
+[ext_resource type="Script" path="res://engine/scripts/resources/instance_node2d/instance_node2d.gd" id="5"]
+[ext_resource type="AudioStream" uid="uid://46ern2rknx3i" path="res://engine/objects/enemies/_sounds/stomp.wav" id="6"]
+[ext_resource type="AudioStream" uid="uid://be3uvqev2c1p6" path="res://engine/objects/players/prefabs/sounds/kick.wav" id="7"]
+[ext_resource type="Texture2D" uid="uid://nlrocfh8kfww" path="res://stages/extra/climbing_minigame/objects/paratroopa_skull/dry_bones.png" id="8"]
+[ext_resource type="PackedScene" uid="uid://dq2mqt7l7f4ya" path="res://engine/objects/entities/wing/wing.tscn" id="9"]
+[ext_resource type="Texture2D" uid="uid://blntw71e7fro6" path="res://stages/extra/climbing_minigame/objects/paratroopa_skull/dry_bones_crash.png" id="10"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c6snl"]
+size = Vector2(28, 32)
+
+[sub_resource type="Resource" id="Resource_bjo2p"]
+script = ExtResource("5")
+resource_local_to_scene = true
+creation_nodepack = ExtResource("3")
+trans_offset = Vector2(0, 0)
+trans_inheritances = 7
+trans_rotation = 0.0
+trans_scale = Vector2(1, 1)
+trans_skew = 0.0
+visi_z_index = 0
+visi_z_as_relative = true
+visi_y_sort_enabled = false
+custom_vars = {
+"death": NodePath("../../Sprite/Dead"),
+"death_speed": Vector2(0, -250)
+}
+custom_script = ExtResource("4")
+
+[sub_resource type="AtlasTexture" id="3"]
+atlas = ExtResource("8")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="4"]
+atlas = ExtResource("8")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="SpriteFrames" id="5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("3")
+}, {
+"duration": 1.0,
+"texture": SubResource("4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="KoopaParatroopaSkull" type="Node2D" groups=["#circle"]]
+script = ExtResource("1")
+amplitude = Vector2(0, 50)
+random_phase = true
+frequency = 2.0
+sprite_path = NodePath("Sprite")
+
+[node name="Body" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 7
+
+[node name="Collision" type="CollisionShape2D" parent="Body"]
+visible = false
+shape = SubResource("RectangleShape2D_c6snl")
+debug_color = Color(0, 0.6431369781494141, 0.3098039925098419, 0.4196079969406128)
+
+[node name="EnemyAttacked" type="Node" parent="Body"]
+script = ExtResource("2")
+stomping_creation = SubResource("Resource_bjo2p")
+stomping_scores = 100
+stomping_sound = ExtResource("6")
+killing_creation = SubResource("Resource_bjo2p")
+killing_scores = 100
+killing_sound_succeeded = ExtResource("7")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("5")
+autoplay = "default"
+
+[node name="Wings" parent="Sprite" instance=ExtResource("9")]
+position = Vector2(-8, -9)
+
+[node name="Dead" type="AnimatedSprite2D" parent="Sprite"]
+visible = false
+rotation = 3.141590118408203
+sprite_frames = SubResource("6")
+offset = Vector2(0, -20)
+
+[connection signal="killed_succeeded" from="Body/EnemyAttacked" to="." method="queue_free"]
+[connection signal="killed_succeeded" from="Body/EnemyAttacked" to="Sprite/Dead" method="set_scale" binds= [Vector2(1, -1)]]
+[connection signal="killed_succeeded" from="Body/EnemyAttacked" to="Sprite/Dead" method="set_speed_scale" binds= [0.0]]
+[connection signal="stomped_succeeded" from="Body/EnemyAttacked" to="." method="queue_free"]

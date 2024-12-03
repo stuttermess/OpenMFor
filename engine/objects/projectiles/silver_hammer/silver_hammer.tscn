@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=4]
+
+[ext_resource type="Script" path="res://engine/objects/projectiles/silver_hammer/silver_hammer.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://dyx62ddt87cgg" path="res://engine/objects/projectiles/silver_hammer/texture.png" id="2"]
+[ext_resource type="Script" path="res://engine/objects/projectiles/projectile_attack.gd" id="3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t82ul"]
+size = Vector2(20, 32)
+
+[node name="SilverHammer" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 64
+script = ExtResource("1")
+sprite = NodePath("Texture")
+speed = Vector2(120, -300)
+gravity_scale = 0.3
+
+[node name="Texture" type="Sprite2D" parent="."]
+texture = ExtResource("2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_t82ul")
+
+[node name="Attack" type="ShapeCast2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_t82ul")
+target_position = Vector2(0, 0)
+max_results = 8
+collision_mask = 67
+collide_with_areas = true
+script = ExtResource("3")
+killer_type = &"beetroot"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+modulate = Color(1, 1, 1, 0.01960779912769794)
+rect = Rect2(-64, -16, 128, 512)
+metadata/_edit_lock_ = true
+
+[connection signal="collided_ceiling" from="." to="." method="bounce" binds= [true, true]]
+[connection signal="collided_floor" from="." to="." method="bounce"]
+[connection signal="collided_wall" from="." to="." method="bounce"]
+[connection signal="killed_notify" from="Attack" to="." method="bounce" binds= [false]]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="queue_free"]

@@ -1,0 +1,999 @@
+[gd_scene load_steps=83 format=4]
+
+[ext_resource type="Script" path="res://engine/scripts/classes/level/level.gd" id="1"]
+[ext_resource type="Script" path="res://stages/extra/minix/scripts/minix_score_loader.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://d3srfe2r6fg2u" path="res://engine/objects/core/music_loader/music_loader.tscn" id="3"]
+[ext_resource type="AudioStream" uid="uid://b3fi82o236yat" path="res://music/minix/minix-menu.ogg" id="4"]
+[ext_resource type="PackedScene" uid="uid://1do11cr84k7y" path="res://engine/objects/players/player.tscn" id="5"]
+[ext_resource type="Script" path="res://stages/extra/minix/scripts/minix_mario.gd" id="6"]
+[ext_resource type="Script" path="res://engine/objects/players/behaviors/player_animation_behavior.gd" id="7"]
+[ext_resource type="SpriteFrames" uid="uid://cp03ve7ed68js" path="res://engine/objects/players/prefabs/animations/mario/animation_mario_small.tres" id="8"]
+[ext_resource type="Script" path="res://engine/objects/players/behaviors/player_grab_behavior.gd" id="9"]
+[ext_resource type="AudioStream" uid="uid://crqd1768xhf58" path="res://engine/objects/players/prefabs/sounds/grab.wav" id="10"]
+[ext_resource type="AudioStream" uid="uid://be3uvqev2c1p6" path="res://engine/objects/players/prefabs/sounds/kick.wav" id="11"]
+[ext_resource type="Script" path="res://engine/objects/players/player_suit.gd" id="12"]
+[ext_resource type="Script" path="res://engine/objects/players/behaviors/player_physics_behavior.gd" id="13"]
+[ext_resource type="Script" path="res://engine/objects/players/player_config.gd" id="14"]
+[ext_resource type="AudioStream" uid="uid://c8ye805mxulip" path="res://engine/objects/players/prefabs/sounds/jump.wav" id="15"]
+[ext_resource type="AudioStream" uid="uid://dh6ia12avp8w5" path="res://engine/objects/players/prefabs/sounds/swim.wav" id="16"]
+[ext_resource type="Resource" uid="uid://2etad878gceh" path="res://engine/objects/players/prefabs/shapers/shaper_player_small.tres" id="17"]
+[ext_resource type="AudioStream" uid="uid://cpy66lof7ycli" path="res://engine/objects/players/prefabs/sounds/music-die.ogg" id="18"]
+[ext_resource type="AudioStream" uid="uid://bhi5ssf0q30df" path="res://engine/objects/players/prefabs/sounds/pipe.wav" id="19"]
+[ext_resource type="AudioStream" uid="uid://csqg16k26jclf" path="res://music/extra/smw-death_extra.ogg" id="20"]
+[ext_resource type="Script" path="res://objects/player_camera_custom/player_camera_custom.gd" id="21"]
+[ext_resource type="Script" path="res://stages/extra/minix/scripts/minix_node_starter.gd" id="22"]
+[ext_resource type="Texture2D" uid="uid://briwe8baq7gso" path="res://stages/extra/minix/textures/minix_logo.png" id="23"]
+[ext_resource type="Script" path="res://engine/components/ui/generic/menu_items_controller.gd" id="24"]
+[ext_resource type="AudioStream" uid="uid://kj3hs5hf5nsf" path="res://stages/extra/minix/sfx/select_extra.wav" id="25"]
+[ext_resource type="FontFile" uid="uid://bgsavu6joui2r" path="res://engine/fonts/junebug.ttf" id="26"]
+[ext_resource type="Script" path="res://stages/extra/minix/scripts/minix_start_sel.gd" id="27"]
+[ext_resource type="Script" path="res://stages/extra/minix/scripts/minix_map_sel.gd" id="28"]
+[ext_resource type="Script" path="res://stages/extra/minix/scripts/minix_igmusic_sel.gd" id="29"]
+[ext_resource type="Script" path="res://stages/extra/minix/scripts/minix_lb_view_lb.gd" id="30"]
+[ext_resource type="Script" path="res://stages/extra/minix/scripts/minix_end_sel.gd" id="31"]
+[ext_resource type="Script" path="res://engine/scripts/nodes/effects/blinking_canvas_item.gd" id="32"]
+[ext_resource type="Script" path="res://engine/components/ui/generic/menu_selector.gd" id="33"]
+[ext_resource type="Script" path="res://stages/extra/minix/scripts/minix_selectors_anim.gd" id="34"]
+[ext_resource type="Script" path="res://stages/extra/minix/scripts/high_score.gd" id="35"]
+[ext_resource type="Script" path="res://stages/extra/minix/scripts/minix_gameover.gd" id="36"]
+[ext_resource type="Script" path="res://stages/extra/minix/scripts/minix_gover_start_again.gd" id="37"]
+[ext_resource type="Script" path="res://stages/extra/minix/scripts/minix_lb_submit.gd" id="38"]
+[ext_resource type="Script" path="res://stages/extra/minix/scripts/minix_gover_switch_map.gd" id="39"]
+[ext_resource type="Texture2D" uid="uid://d14berfdbyp8w" path="res://stages/extra/minix/textures/hiscore_button_bg.png" id="40"]
+[ext_resource type="FontVariation" uid="uid://4h0cbbutybo2" path="res://engine/fonts/font_variations/mister_earl_variation.tres" id="41"]
+[ext_resource type="Script" path="res://stages/extra/minix/scripts/minix_lb.gd" id="42"]
+[ext_resource type="PackedScene" uid="uid://b7eavmhombhly" path="res://stages/extra/minix/objects/control_leaderboard.tscn" id="43"]
+[ext_resource type="PackedScene" uid="uid://ugxjxrdao5el" path="res://engine/components/hud/hud.tscn" id="44"]
+[ext_resource type="Texture2D" uid="uid://bdyg3ju76ed67" path="res://engine/components/hud/coins.png" id="45"]
+[ext_resource type="FontFile" uid="uid://b1pi0t5byork2" path="res://engine/components/hud/hud_font.fnt" id="46"]
+[ext_resource type="Script" path="res://engine/components/hud/value.gd" id="47"]
+[ext_resource type="Script" path="res://engine/scripts/nodes/general_movement/circle_movement.gd" id="48"]
+[ext_resource type="Texture2D" uid="uid://d1vkaab2ewmjq" path="res://engine/objects/players/prefabs/textures/mario/mario_small.png" id="49"]
+[ext_resource type="Script" path="res://stages/extra/minix/animated_sprite_2d.gd" id="50"]
+[ext_resource type="Texture2D" uid="uid://cfy38wut41n1q" path="res://stages/extra/minix/status/S2.png" id="51"]
+[ext_resource type="Texture2D" uid="uid://dda25chx1t55j" path="res://stages/extra/minix/status/S1.png" id="52"]
+[ext_resource type="Texture2D" uid="uid://c0mxgb8tu2u4r" path="res://stages/extra/minix/status/S3.png" id="53"]
+[ext_resource type="Texture2D" uid="uid://cguyy2r5urcvv" path="res://stages/extra/minix/status/S4.png" id="54"]
+[ext_resource type="Texture2D" uid="uid://qmvs1hugffrp" path="res://stages/extra/minix/status/S5.png" id="55"]
+[ext_resource type="Texture2D" uid="uid://554vr2j671pj" path="res://stages/extra/minix/status/S6.png" id="56"]
+[ext_resource type="Script" path="res://stages/extra/minix/scripts/minix_status.gd" id="57"]
+[ext_resource type="Script" path="res://stages/extra/minix/scripts/minix_script.gd" id="58"]
+[ext_resource type="PackedScene" uid="uid://opdqhst2t4mj" path="res://stages/extra/minix/maps/classic.tscn" id="59"]
+[ext_resource type="PackedScene" uid="uid://bpjfkgn3xyib1" path="res://stages/extra/minix/maps/three_islands.tscn" id="60"]
+[ext_resource type="PackedScene" uid="uid://b3uli3g8bpvwu" path="res://stages/extra/minix/maps/bowser's_castle.tscn" id="61"]
+[ext_resource type="PackedScene" uid="uid://d3e67rsfuc3ob" path="res://stages/extra/minix/maps/evil_castle.tscn" id="62"]
+[ext_resource type="PackedScene" uid="uid://cx368qovj48tp" path="res://stages/extra/minix/maps/playgrounds.tscn" id="63"]
+[ext_resource type="PackedScene" uid="uid://bn27wl07v41xw" path="res://stages/extra/minix/maps/mario_play.tscn" id="64"]
+[ext_resource type="PackedScene" uid="uid://bb8ud6aldbpmu" path="res://stages/extra/minix/maps/playgrounds_2.tscn" id="65"]
+[ext_resource type="PackedScene" uid="uid://boeruql4s8rd1" path="res://stages/extra/minix/maps/underwater.tscn" id="66"]
+[ext_resource type="PackedScene" uid="uid://cyhtxh1cfkfk7" path="res://stages/extra/minix/maps/underground.tscn" id="67"]
+[ext_resource type="Script" path="res://stages/extra/minix/scripts/minix_enemy_purger.gd" id="68"]
+
+[sub_resource type="Resource" id="Resource_hhd4i"]
+script = ExtResource("14")
+walk_initial_speed = 50.0
+walk_acceleration = 312.5
+walk_deceleration = 312.5
+walk_crouch_deceleration = 625.0
+walk_turning_acce = 1250.0
+walk_max_walking_speed = 175.0
+walk_max_running_speed = 350.0
+underwater_walk_max_walking_speed = 175.0
+underwater_walk_max_running_speed = 175.0
+jump_speed = 700.0
+jump_buff_static = 1000.0
+jump_buff_dynamic = 1250.0
+jump_stomp_multiplicator = 1.0
+swim_speed = 300.0
+swim_out_speed = 450.0
+swim_max_speed = 300.0
+climb_speed = 150.0
+slide_max_speed = 450.0
+slide_acceleration = 468.75
+slide_deceleration = 468.75
+stuck_recovery_speed = 60.0
+animation_walking_speed = 1.5
+animation_max_walking_speed = 5.0
+animation_min_walking_speed = 1.0
+sound_jump = ExtResource("15")
+sound_swim = ExtResource("16")
+
+[sub_resource type="Resource" id="Resource_d010u"]
+script = ExtResource("12")
+name = &"small"
+type = 0
+gets_hurt_to = null
+physics_config = SubResource("Resource_hhd4i")
+physics_behavior = ExtResource("13")
+physics_crouchable = false
+physics_shaper = ExtResource("17")
+physics_shaper_crouch = ExtResource("17")
+animation_sprites = ExtResource("8")
+animation_behavior = ExtResource("7")
+animation_underwater_bubble_offset = Vector2(0, -20)
+behavior_resource = null
+behavior_script = null
+behavior_crouch_reflect_fireballs = false
+grab_behavior = ExtResource("9")
+grab_sound_grab = ExtResource("10")
+grab_sound_kick = ExtResource("11")
+extra_vars = {}
+extra_behavior = null
+sound_hurt = ExtResource("19")
+sound_death = ExtResource("18")
+sound_pitch = 1.0
+
+[sub_resource type="FontVariation" id="FontVariation_prh3k"]
+base_font = ExtResource("26")
+spacing_glyph = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_skyn2"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7celo"]
+atlas = ExtResource("45")
+region = Rect2(0, 0, 14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ej1hx"]
+atlas = ExtResource("45")
+region = Rect2(28, 0, 14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nogej"]
+atlas = ExtResource("45")
+region = Rect2(56, 0, 14, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_npe5u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7celo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ej1hx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nogej")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6irku"]
+atlas = ExtResource("49")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_te56b"]
+atlas = ExtResource("49")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5teqj"]
+atlas = ExtResource("49")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q23ld"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6irku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_te56b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5teqj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rqcdw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("51")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_22gor"]
+size = Vector2(832, 32)
+
+[node name="Minix" type="Node2D"]
+script = ExtResource("1")
+time = -1
+metadata/_edit_lock_ = true
+
+[node name="MinixScoreLoader" type="Node" parent="."]
+script = ExtResource("2")
+
+[node name="MusicLoaderIntro" parent="." instance=ExtResource("3")]
+music = [ExtResource("4")]
+channel_id = 0
+play_immediately = false
+stop_all_music_on_start = false
+volume_db = [-3.0]
+
+[node name="Mario" parent="." instance=ExtResource("5")]
+position = Vector2(336, 400)
+script = ExtResource("6")
+suit = SubResource("Resource_d010u")
+death_music_override = ExtResource("20")
+death_wait_time = -1.0
+
+[node name="PlayerCamera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 640
+limit_bottom = 480
+script = ExtResource("21")
+ignore_retro_scroll = true
+force_xscroll_off = true
+enable_left_border_death = false
+enable_right_border_death = false
+metadata/_edit_lock_ = true
+
+[node name="START" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Node2D" type="Node2D" parent="START"]
+script = ExtResource("22")
+
+[node name="ColorRect" type="ColorRect" parent="START/Node2D"]
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(1, 1, 1, 0.313726007938385)
+metadata/_edit_lock_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="START/Node2D"]
+offset_top = 24.0
+offset_right = 640.0
+offset_bottom = 277.0
+color = Color(1, 1, 1, 0.3764710128307343)
+metadata/_edit_lock_ = true
+
+[node name="MinixLogo" type="Sprite2D" parent="START/Node2D/ColorRect2"]
+position = Vector2(320, 126)
+texture = ExtResource("23")
+
+[node name="MinixControls" type="VBoxContainer" parent="START/Node2D"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = 282.0
+offset_right = 640.0
+offset_bottom = 401.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 7
+script = ExtResource("24")
+control_sound = ExtResource("25")
+
+[node name="Start" type="Label" parent="START/Node2D/MinixControls"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 12
+text = "START THE FIGHT!"
+horizontal_alignment = 1
+script = ExtResource("27")
+
+[node name="Start2" type="CenterContainer" parent="START/Node2D/MinixControls"]
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("28")
+
+[node name="Label" type="Label" parent="START/Node2D/MinixControls/Start2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 12
+text = "map: %s"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Start4" type="CenterContainer" parent="START/Node2D/MinixControls"]
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("29")
+
+[node name="Label" type="Label" parent="START/Node2D/MinixControls/Start4"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 12
+text = "in-game music: %s"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Start3" type="Label" parent="START/Node2D/MinixControls"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 12
+text = "view the leaderboard"
+horizontal_alignment = 1
+uppercase = true
+script = ExtResource("30")
+
+[node name="Start5" type="Label" parent="START/Node2D/MinixControls"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 12
+text = "back to mario forever"
+horizontal_alignment = 1
+uppercase = true
+script = ExtResource("31")
+
+[node name="EnterToPreview" type="Label" parent="START/Node2D"]
+offset_top = 453.0
+offset_right = 640.0
+offset_bottom = 467.0
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 12
+text = "Press enter to preview"
+horizontal_alignment = 1
+uppercase = true
+script = ExtResource("32")
+
+[node name="Selector" type="AnimatedSprite2D" parent="START/Node2D"]
+position = Vector2(243, 292)
+script = ExtResource("33")
+smooth_speed = 0.4
+position_paddings_array = [0.0, 0.0, 0.0]
+
+[node name="Start" type="Label" parent="START/Node2D/Selector"]
+offset_left = -31.0
+offset_top = -7.0
+offset_right = -9.0
+offset_bottom = 7.0
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 11
+text = "-->"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("34")
+
+[node name="Selector2" type="AnimatedSprite2D" parent="START/Node2D"]
+position = Vector2(395, 292)
+script = ExtResource("33")
+smooth_speed = 0.4
+position_side = 1
+position_paddings_array = [0.0, 0.0, 0.0]
+
+[node name="Start" type="Label" parent="START/Node2D/Selector2"]
+offset_left = 9.0
+offset_top = -7.0
+offset_right = 31.0
+offset_bottom = 7.0
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 11
+text = "<--"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("34")
+left_side = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="START/Node2D"]
+offset_left = 16.0
+offset_top = 416.0
+offset_right = 192.0
+offset_bottom = 480.0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="START/Node2D/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Start" type="Label" parent="START/Node2D/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 11
+text = "LAST SCORE:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="score" type="Label" parent="START/Node2D/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("FontVariation_prh3k")
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("35")
+minix_score_loader_path = NodePath("../../../../../MinixScoreLoader")
+starter_path = NodePath("../../..")
+value = "last"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="START/Node2D/VBoxContainer"]
+layout_mode = 2
+
+[node name="Start" type="Label" parent="START/Node2D/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 11
+text = "BEST SCORE:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="score" type="Label" parent="START/Node2D/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("FontVariation_prh3k")
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("35")
+minix_score_loader_path = NodePath("../../../../../MinixScoreLoader")
+starter_path = NodePath("../../..")
+value = "best"
+
+[node name="GAMEOVER" type="Node2D" parent="START"]
+process_mode = 3
+script = ExtResource("36")
+
+[node name="ColorRect" type="ColorRect" parent="START/GAMEOVER"]
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(1, 1, 1, 0.313726007938385)
+metadata/_edit_lock_ = true
+
+[node name="congratulations" type="Label" parent="START/GAMEOVER"]
+offset_left = 160.0
+offset_top = 48.0
+offset_right = 480.0
+offset_bottom = 249.0
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 12
+text = "congratulations! your score is:
+
+
+godlikes made:
+
+
+you've lasted for (1x speed):
+
+
+on map:
+
+
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="score" type="Label" parent="START/GAMEOVER"]
+offset_left = 160.0
+offset_top = 69.0
+offset_right = 480.0
+offset_bottom = 83.0
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.9686269760131836, 0.9686269760131836, 0.4980390071868896, 1)
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("FontVariation_prh3k")
+theme_override_font_sizes/font_size = 13
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="godlikes" type="Label" parent="START/GAMEOVER"]
+offset_left = 160.0
+offset_top = 120.0
+offset_right = 480.0
+offset_bottom = 134.0
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.9686269760131836, 0.9686269760131836, 0.4980390071868896, 1)
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("FontVariation_prh3k")
+theme_override_font_sizes/font_size = 13
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lasted" type="Label" parent="START/GAMEOVER"]
+offset_top = 171.0
+offset_right = 640.0
+offset_bottom = 185.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.9686269760131836, 0.9686269760131836, 0.4980390071868896, 1)
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 13
+text = "%d min, %d sec"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="MapLabel" type="Label" parent="START/GAMEOVER"]
+offset_top = 222.0
+offset_right = 640.0
+offset_bottom = 236.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.9686269760131836, 0.9686269760131836, 0.4980390071868896, 1)
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 12
+text = "%s"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="MinixControls" type="VBoxContainer" parent="START/GAMEOVER"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = 282.0
+offset_right = 640.0
+offset_bottom = 380.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 7
+script = ExtResource("24")
+focused = false
+control_sound = ExtResource("25")
+
+[node name="PlayAgain" type="Label" parent="START/GAMEOVER/MinixControls"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 12
+text = "PLAY AGAIN!"
+horizontal_alignment = 1
+script = ExtResource("37")
+
+[node name="ViewLeaderboard" type="Label" parent="START/GAMEOVER/MinixControls"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.7529410123825073, 0.9725490212440491, 0.7529410123825073, 1)
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 12
+text = "view the leaderboard"
+horizontal_alignment = 1
+uppercase = true
+script = ExtResource("30")
+gameover = true
+
+[node name="Submit" type="Label" parent="START/GAMEOVER/MinixControls"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.9399999976158142, 0.803072988986969, 0.7613999843597412, 1)
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 12
+text = "submit YOUR SCORE!!!"
+horizontal_alignment = 1
+uppercase = true
+script = ExtResource("38")
+
+[node name="SwitchMap" type="Label" parent="START/GAMEOVER/MinixControls"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 12
+text = "switch the map"
+horizontal_alignment = 1
+uppercase = true
+script = ExtResource("39")
+
+[node name="QuitToMF" type="Label" parent="START/GAMEOVER/MinixControls"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 12
+text = "quit to mario forever"
+horizontal_alignment = 1
+uppercase = true
+script = ExtResource("31")
+
+[node name="Selector" type="AnimatedSprite2D" parent="START/GAMEOVER"]
+script = ExtResource("33")
+smooth_speed = 0.4
+position_paddings_array = [0.0, 0.0, 0.0]
+
+[node name="Start" type="Label" parent="START/GAMEOVER/Selector"]
+offset_left = -31.0
+offset_top = -7.0
+offset_right = -9.0
+offset_bottom = 7.0
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 11
+text = "-->"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("34")
+
+[node name="Selector2" type="AnimatedSprite2D" parent="START/GAMEOVER"]
+script = ExtResource("33")
+smooth_speed = 0.4
+position_side = 1
+position_paddings_array = [0.0, 0.0, 0.0]
+
+[node name="Start" type="Label" parent="START/GAMEOVER/Selector2"]
+offset_left = 9.0
+offset_top = -7.0
+offset_right = 31.0
+offset_bottom = 7.0
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 11
+text = "<--"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("34")
+left_side = false
+
+[node name="PleaseType" type="Node2D" parent="START/GAMEOVER"]
+visible = false
+position = Vector2(320, 417)
+
+[node name="InputBox" type="Node2D" parent="START/GAMEOVER/PleaseType"]
+
+[node name="ColorRect2" type="ColorRect" parent="START/GAMEOVER/PleaseType/InputBox"]
+offset_left = -320.0
+offset_top = -33.0
+offset_right = 320.0
+offset_bottom = 33.0
+color = Color(1, 1, 1, 0.3764710128307343)
+
+[node name="BG" type="Sprite2D" parent="START/GAMEOVER/PleaseType/InputBox"]
+scale = Vector2(0.800000011920929, 0.800000011920929)
+texture = ExtResource("40")
+
+[node name="LineEdit" type="LineEdit" parent="START/GAMEOVER/PleaseType/InputBox"]
+offset_left = -148.0
+offset_top = -4.0
+offset_right = 148.0
+offset_bottom = 22.0
+theme_override_colors/caret_color = Color(0, 0, 0.5137259960174561, 1)
+theme_override_colors/font_placeholder_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0.5960779786109924, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/caret_width = 2
+theme_override_fonts/font = ExtResource("41")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/focus = SubResource("StyleBoxEmpty_skyn2")
+alignment = 1
+max_length = 25
+flat = true
+caret_blink = true
+caret_force_displayed = true
+
+[node name="SwitchMap" type="Label" parent="START/GAMEOVER/PleaseType/InputBox"]
+offset_left = -192.0
+offset_top = -20.0
+offset_right = 192.0
+offset_bottom = 7.0
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 11
+text = "please type your name:"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Submitting" type="Node2D" parent="START/GAMEOVER/PleaseType"]
+position = Vector2(-320, -417)
+
+[node name="ColorRect" type="ColorRect" parent="START/GAMEOVER/PleaseType/Submitting"]
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(1, 1, 1, 0.313726007938385)
+metadata/_edit_lock_ = true
+
+[node name="BG" type="Sprite2D" parent="START/GAMEOVER/PleaseType/Submitting"]
+position = Vector2(320, 240)
+scale = Vector2(0.800000011920929, 0.800000011920929)
+texture = ExtResource("40")
+
+[node name="Loading" type="Label" parent="START/GAMEOVER/PleaseType/Submitting"]
+offset_left = 128.0
+offset_top = 223.0
+offset_right = 512.0
+offset_bottom = 255.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 13
+text = "submitting your score..."
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="congrats" type="Label" parent="START/GAMEOVER/PleaseType/Submitting"]
+visible = false
+offset_left = 128.0
+offset_top = 214.0
+offset_right = 512.0
+offset_bottom = 246.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.9372550249099731, 0.9372550249099731, 0.3803919851779938, 1)
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 17
+text = "congratulations!"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="congrats2" type="Label" parent="START/GAMEOVER/PleaseType/Submitting/congrats"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 22.0
+offset_right = 383.0
+offset_bottom = 54.0
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 12
+text = "your score has been submitted!"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="EnterToPreview" type="Label" parent="START/GAMEOVER/PleaseType"]
+offset_left = -320.0
+offset_top = 38.0
+offset_right = 320.0
+offset_bottom = 52.0
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0.1254899948835373, 0.1254899948835373, 0.5019609928131104, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("26")
+theme_override_font_sizes/font_size = 12
+text = "Press enter to submit score!"
+horizontal_alignment = 1
+uppercase = true
+script = ExtResource("32")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="START/GAMEOVER/PleaseType"]
+timeout = 5.0
+
+[node name="Leaderboard" type="Node2D" parent="START"]
+process_mode = 3
+visible = false
+script = ExtResource("42")
+
+[node name="ColorRect" type="ColorRect" parent="START/Leaderboard"]
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(1, 1, 1, 0.313726007938385)
+metadata/_edit_lock_ = true
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="START/Leaderboard"]
+physics_interpolation_mode = 0
+offset_right = 640.0
+offset_bottom = 480.0
+
+[node name="SubViewport" type="SubViewport" parent="START/Leaderboard/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+size = Vector2i(640, 480)
+render_target_update_mode = 0
+
+[node name="Control" parent="START/Leaderboard/SubViewportContainer/SubViewport" instance=ExtResource("43")]
+
+[node name="HTTPRequest" type="HTTPRequest" parent="START/Leaderboard"]
+timeout = 5.0
+
+[node name="HUD" parent="." instance=ExtResource("44")]
+visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchor_left = 0.4000000059604645
+anchor_right = 0.4000000059604645
+offset_left = -28.0
+offset_top = 35.0
+offset_right = 368.0
+offset_bottom = 51.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Control"]
+position = Vector2(391, -26)
+sprite_frames = SubResource("SpriteFrames_npe5u")
+autoplay = "default"
+centered = false
+
+[node name="Coins" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.1870000064373016
+anchor_bottom = -0.1870000064373016
+offset_left = 328.0
+offset_top = -24.00799942016602
+offset_right = 380.0
+offset_bottom = -6.007999897003174
+grow_horizontal = 0
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("46")
+text = "%s ~"
+horizontal_alignment = 2
+script = ExtResource("47")
+value_name = "score"
+
+[node name="Node2D" type="Node2D" parent="CanvasLayer"]
+script = ExtResource("48")
+amplitude = Vector2(0, 10)
+frequency = 4.0
+sprite_path = NodePath("AnimatedSprite2D")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Node2D"]
+position = Vector2(615, 40)
+sprite_frames = SubResource("SpriteFrames_q23ld")
+autoplay = "default"
+script = ExtResource("50")
+
+[node name="Node2D2" type="Node2D" parent="CanvasLayer"]
+script = ExtResource("48")
+amplitude = Vector2(0, 10)
+phase = 180.0
+frequency = 4.0
+sprite_path = NodePath("AnimatedSprite2D")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Node2D2"]
+position = Vector2(583, 40)
+sprite_frames = SubResource("SpriteFrames_q23ld")
+autoplay = "default"
+script = ExtResource("50")
+
+[node name="Node2D3" type="Node2D" parent="CanvasLayer"]
+script = ExtResource("48")
+amplitude = Vector2(0, 10)
+frequency = 4.0
+sprite_path = NodePath("AnimatedSprite2D")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Node2D3"]
+position = Vector2(551, 40)
+sprite_frames = SubResource("SpriteFrames_q23ld")
+autoplay = "default"
+script = ExtResource("50")
+
+[node name="Status" type="AnimatedSprite2D" parent="CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(320, 448)
+sprite_frames = SubResource("SpriteFrames_rqcdw")
+script = ExtResource("57")
+
+[node name="Node" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("58")
+
+[node name="Maps" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="classic" parent="Maps" instance=ExtResource("59")]
+
+[node name="three_islands" parent="Maps" instance=ExtResource("60")]
+
+[node name="bowser\'s_castle" parent="Maps" instance=ExtResource("61")]
+
+[node name="evil_castle" parent="Maps" instance=ExtResource("62")]
+
+[node name="playgrounds" parent="Maps" instance=ExtResource("63")]
+
+[node name="mario play" parent="Maps" instance=ExtResource("64")]
+
+[node name="playgrounds_2" parent="Maps" instance=ExtResource("65")]
+
+[node name="underwater" parent="Maps" instance=ExtResource("66")]
+
+[node name="underground" parent="Maps" instance=ExtResource("67")]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("68")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(0, -32)
+polygon = PackedVector2Array(-96, 608, 736, 608, 736, -800, 768, -800, 768, 640, -128, 640, -128, -800, -96, -800)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(320, -816)
+shape = SubResource("RectangleShape2D_22gor")
+
+[connection signal="score_loaded" from="MinixScoreLoader" to="START/Node2D/VBoxContainer/HBoxContainer/score" method="_on_minix_score_loader_score_loaded"]
+[connection signal="score_loaded" from="MinixScoreLoader" to="START/Node2D/VBoxContainer/HBoxContainer2/score" method="_on_minix_score_loader_score_loaded"]
+[connection signal="score_saved" from="MinixScoreLoader" to="START/Node2D/VBoxContainer/HBoxContainer/score" method="_on_minix_score_loader_score_loaded"]
+[connection signal="score_saved" from="MinixScoreLoader" to="START/Node2D/VBoxContainer/HBoxContainer2/score" method="_on_minix_score_loader_score_loaded"]
+[connection signal="damaged_to" from="Mario" to="Node" method="_on_mario_damaged_to"]
+[connection signal="died" from="Mario" to="START/GAMEOVER" method="_on_mario_died"]
+[connection signal="game_started" from="START/Node2D" to="CanvasLayer" method="show"]
+[connection signal="game_started" from="START/Node2D" to="Node" method="_on_game_started"]
+[connection signal="selected" from="START/Node2D/MinixControls" to="START/Node2D/Selector" method="handle_selection"]
+[connection signal="selected" from="START/Node2D/MinixControls" to="START/Node2D/Selector2" method="handle_selection"]
+[connection signal="map_changed_to" from="START/Node2D/MinixControls/Start2" to="START/Node2D" method="_on_map_changed_to"]
+[connection signal="map_changed_to" from="START/Node2D/MinixControls/Start2" to="START/Node2D/VBoxContainer/HBoxContainer/score" method="_on_map_changed_to"]
+[connection signal="map_changed_to" from="START/Node2D/MinixControls/Start2" to="START/Node2D/VBoxContainer/HBoxContainer2/score" method="_on_map_changed_to"]
+[connection signal="map_changed_to" from="START/Node2D/MinixControls/Start4" to="START/Node2D" method="_on_map_changed_to"]
+[connection signal="map_changed_to" from="START/Node2D/MinixControls/Start4" to="START/Node2D/VBoxContainer/HBoxContainer/score" method="_on_map_changed_to"]
+[connection signal="map_changed_to" from="START/Node2D/MinixControls/Start4" to="START/Node2D/VBoxContainer/HBoxContainer2/score" method="_on_map_changed_to"]
+[connection signal="selected" from="START/GAMEOVER/MinixControls" to="START/GAMEOVER/Selector" method="handle_selection"]
+[connection signal="selected" from="START/GAMEOVER/MinixControls" to="START/GAMEOVER/Selector2" method="handle_selection"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

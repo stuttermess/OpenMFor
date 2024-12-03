@@ -1,0 +1,140 @@
+[gd_scene load_steps=6 format=4]
+
+[ext_resource type="Script" path="res://engine/singletones/nodes/debug/console/debug_player_stats.gd" id="1"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_seusf"]
+action = &"ui_accept"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_8ddje"]
+events = [SubResource("InputEventAction_seusf")]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4nxa3"]
+
+[sub_resource type="GDScript" id="GDScript_j5f7y"]
+script/source = "extends Label
+
+@onready
+var timer: Timer = Timer.new()
+
+func _ready() -> void:
+	add_child(timer)
+	timer.wait_time = 0.5
+	timer.timeout.connect(update_fps)
+	timer.start()
+
+func update_fps() -> void:
+	text = \"%s FPS\" % str(Engine.get_frames_per_second())
+"
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2509799897670746, 0.2509799897670746, 0.2509799897670746, 1)
+
+[node name="CmdInput" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -35.0
+offset_right = -70.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+placeholder_text = "type help to get help."
+clear_button_enabled = true
+shortcut_keys_enabled = false
+caret_blink = true
+
+[node name="Enter" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -65.0
+offset_top = -35.0
+offset_right = -5.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+shortcut = SubResource("Shortcut_8ddje")
+text = "Send"
+
+[node name="OutputContainer" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 33.0
+offset_right = -5.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Output" type="RichTextLabel" parent="OutputContainer"]
+modulate = Color(1, 1, 1, 0.5960779786109924)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+scroll_following = true
+threaded = true
+metadata/_edit_lock_ = true
+
+[node name="Paused" type="CheckBox" parent="."]
+layout_mode = 0
+offset_right = 85.0
+offset_bottom = 31.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4nxa3")
+button_pressed = true
+text = "Paused"
+
+[node name="FPS" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "FPS"
+horizontal_alignment = 2
+script = SubResource("GDScript_j5f7y")
+
+[node name="PlayerStats" type="Label" parent="."]
+layout_mode = 1
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 72.0
+offset_bottom = 55.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -2
+theme_override_constants/outline_size = 8
+text = "Debug Stats"
+script = ExtResource("1")

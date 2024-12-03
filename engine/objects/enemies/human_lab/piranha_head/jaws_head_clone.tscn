@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=4]
+
+[ext_resource type="PackedScene" uid="uid://dt52xvrtre8h3" path="res://engine/objects/enemies/piranha_plants/piranha_head.tscn" id="1"]
+[ext_resource type="AudioStream" uid="uid://dgtypbpo8samu" path="res://engine/objects/enemies/human_lab/goomba/sfx/kick2.wav" id="2"]
+[ext_resource type="Texture2D" uid="uid://byu1t7txu5lgj" path="res://engine/objects/enemies/human_lab/piranha_head/textures/clone_head.png" id="3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a24f0"]
+atlas = ExtResource("3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skdk3"]
+atlas = ExtResource("3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rflg"]
+atlas = ExtResource("3")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1t8pg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a24f0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skdk3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rflg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skdk3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="JawsHeadClone" instance=ExtResource("1")]
+
+[node name="EnemyAttacked" parent="Body" index="1"]
+killing_sound_succeeded = ExtResource("2")
+
+[node name="Sprite" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_1t8pg")

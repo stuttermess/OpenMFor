@@ -1,0 +1,117 @@
+[gd_scene load_steps=15 format=4]
+
+[ext_resource type="Script" path="res://engine/objects/enemies/piranha_plants/piranha_in_pipe.gd" id="1"]
+[ext_resource type="Script" path="res://engine/scripts/nodes/enemies/enemy_attacked.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://oe7i3cief0g" path="res://engine/objects/enemies/_dead/enemy_killed.tscn" id="3"]
+[ext_resource type="Script" path="res://engine/objects/enemies/_dead/prefabs/do_killed.gd" id="4"]
+[ext_resource type="Script" path="res://engine/scripts/resources/instance_node2d/instance_node2d.gd" id="5"]
+[ext_resource type="AudioStream" uid="uid://be3uvqev2c1p6" path="res://engine/objects/players/prefabs/sounds/kick.wav" id="6"]
+[ext_resource type="AudioStream" uid="uid://c162tqddc8eej" path="res://engine/objects/bumping_blocks/_sounds/bump.wav" id="7"]
+[ext_resource type="Texture2D" uid="uid://cuuampkjmhj6j" path="res://engine/objects/enemies/piranha_plants/textures/piranha_gray.png" id="8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_64hdc"]
+size = Vector2(32, 32)
+
+[sub_resource type="Resource" id="Resource_fvcap"]
+script = ExtResource("5")
+creation_nodepack = ExtResource("3")
+trans_offset = Vector2(0, 0)
+trans_inheritances = 7
+trans_rotation = 0.0
+trans_scale = Vector2(1, 1)
+trans_skew = 0.0
+visi_z_index = 3
+visi_z_as_relative = true
+visi_y_sort_enabled = false
+custom_vars = {
+"death": NodePath("../../Sprite"),
+"death_speed": Vector2(0, -250),
+"fast_death_effect": true
+}
+custom_script = ExtResource("4")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etnku"]
+atlas = ExtResource("8")
+region = Rect2(0, 0, 31, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b82cp"]
+atlas = ExtResource("8")
+region = Rect2(31, 0, 31, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iwpqg"]
+atlas = ExtResource("8")
+region = Rect2(62, 0, 31, 47)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ym01l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etnku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b82cp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iwpqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b82cp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="PiranhaGray" type="Node2D"]
+self_modulate = Color(1, 1, 1, 0.121569000184536)
+script = ExtResource("1")
+
+[node name="Body" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+collision_mask = 7
+
+[node name="Collision" type="CollisionShape2D" parent="Body"]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_64hdc")
+debug_color = Color(0, 0.6431369781494141, 0.3098039925098419, 0.4196079969406128)
+
+[node name="EnemyAttacked" type="Node" parent="Body"]
+script = ExtResource("2")
+stomping_standard = Vector2(0, 0)
+killing_immune = {
+"beetroot": true,
+"boomerang": true,
+"fireball": true,
+"hammer": true,
+"iceball": true,
+"shell": true,
+"shell_defence": 5,
+"shell_forced": true,
+"starman": false
+}
+killing_creation = SubResource("Resource_fvcap")
+killing_scores = 200
+killing_sound_succeeded = ExtResource("6")
+killing_sound_failed = ExtResource("7")
+ice_sprite = NodePath("../../Sprite")
+ice_sprite_autoset = false
+ice_fragile = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+z_index = -2
+position = Vector2(0, -24)
+sprite_frames = SubResource("SpriteFrames_ym01l")
+autoplay = "default"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+modulate = Color(1, 1, 1, 0.01960779912769794)
+position = Vector2(0.5, -24)
+scale = Vector2(1.549999952316284, 2.400000095367432)
+metadata/_edit_lock_ = true
+
+[node name="Step" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="killed_succeeded" from="Body/EnemyAttacked" to="." method="queue_free"]
+[connection signal="killed_succeeded" from="Body/EnemyAttacked" to="Sprite" method="stop"]

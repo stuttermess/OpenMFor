@@ -1,0 +1,269 @@
+[gd_scene load_steps=42 format=4]
+
+[ext_resource type="Script" path="res://engine/scripts/nodes/general_movement/general_movement.gd" id="1"]
+[ext_resource type="Script" path="res://engine/objects/enemies/enemy_body_collision.gd" id="2"]
+[ext_resource type="Script" path="res://engine/scripts/nodes/enemies/enemy_attacked.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://dj2b5g2smonyu" path="res://engine/objects/enemies/_dead/enemy_stomped.tscn" id="4"]
+[ext_resource type="Script" path="res://engine/objects/enemies/human_lab/goomba/scripts/do_stomped_animated.gd" id="5"]
+[ext_resource type="Script" path="res://engine/scripts/resources/instance_node2d/instance_node2d.gd" id="6"]
+[ext_resource type="AudioStream" uid="uid://c6ff1wsvkd72n" path="res://objects/human_lab_2/mutant_clone/sfx/stomp_a.ogg" id="7"]
+[ext_resource type="PackedScene" uid="uid://oe7i3cief0g" path="res://engine/objects/enemies/_dead/enemy_killed.tscn" id="8"]
+[ext_resource type="Script" path="res://engine/objects/enemies/_dead/prefabs/do_killed.gd" id="9"]
+[ext_resource type="AudioStream" uid="uid://dyix00gqfia5b" path="res://objects/human_lab_2/mutant_clone/sfx/kick_a.ogg" id="10"]
+[ext_resource type="Texture2D" uid="uid://353q7k3m6pd3" path="res://objects/human_lab_2/mutant_clone/gfx/body.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://dd1fgw8et5k2y" path="res://objects/human_lab_2/mutant_clone/gfx/dead.png" id="12"]
+[ext_resource type="Script" path="res://engine/objects/enemies/human_lab/goomba/scripts/killed_rotation_quality.gd" id="13"]
+[ext_resource type="Texture2D" uid="uid://divifcv6yj50h" path="res://engine/objects/enemies/human_lab/goomba/textures/clone_legs.png" id="14"]
+[ext_resource type="Script" path="res://engine/objects/enemies/human_lab/goomba/scripts/legs_script.gd" id="15"]
+[ext_resource type="Texture2D" uid="uid://c573yqqploblw" path="res://objects/human_lab_2/mutant_clone/gfx/head.png" id="16"]
+[ext_resource type="Texture2D" uid="uid://b3oyf36tn8qos" path="res://objects/human_lab_2/mutant_clone/gfx/hands.png" id="17"]
+[ext_resource type="Script" path="res://engine/scripts/nodes/vision/vision.gd" id="18"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aahbl"]
+size = Vector2(32, 54)
+
+[sub_resource type="Resource" id="Resource_txxrc"]
+script = ExtResource("6")
+resource_local_to_scene = true
+creation_nodepack = ExtResource("4")
+trans_offset = Vector2(0, 0)
+trans_inheritances = 7
+trans_rotation = 0.0
+trans_scale = Vector2(1, 1)
+trans_skew = 0.0
+visi_z_index = 0
+visi_z_as_relative = true
+visi_y_sort_enabled = false
+custom_vars = {
+"death": NodePath("")
+}
+custom_script = ExtResource("5")
+
+[sub_resource type="Resource" id="Resource_8ttht"]
+script = ExtResource("6")
+resource_local_to_scene = true
+creation_nodepack = ExtResource("8")
+trans_offset = Vector2(0, 0)
+trans_inheritances = 7
+trans_rotation = 0.0
+trans_scale = Vector2(1, 1)
+trans_skew = 0.0
+visi_z_index = 1
+visi_z_as_relative = true
+visi_y_sort_enabled = false
+custom_vars = {
+"death": NodePath("../../Sprite/DeadRotating"),
+"death_speed": Vector2(0, -250)
+}
+custom_script = ExtResource("9")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80lua"]
+atlas = ExtResource("14")
+region = Rect2(0, 0, 32, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pedk1"]
+atlas = ExtResource("14")
+region = Rect2(32, 0, 32, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cpt5f"]
+atlas = ExtResource("14")
+region = Rect2(64, 0, 32, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qulyd"]
+atlas = ExtResource("14")
+region = Rect2(96, 0, 32, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdc8f"]
+atlas = ExtResource("14")
+region = Rect2(0, 9, 32, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5ilw"]
+atlas = ExtResource("14")
+region = Rect2(32, 9, 32, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3w8w"]
+atlas = ExtResource("14")
+region = Rect2(64, 9, 32, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2l2c"]
+atlas = ExtResource("14")
+region = Rect2(96, 9, 32, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahh2d"]
+atlas = ExtResource("14")
+region = Rect2(0, 18, 32, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i6h8"]
+atlas = ExtResource("14")
+region = Rect2(32, 18, 32, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2xlo"]
+atlas = ExtResource("14")
+region = Rect2(64, 18, 32, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ik7x"]
+atlas = ExtResource("14")
+region = Rect2(96, 18, 32, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0kv8"]
+atlas = ExtResource("14")
+region = Rect2(0, 27, 32, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chwp2"]
+atlas = ExtResource("14")
+region = Rect2(32, 27, 32, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxb57"]
+atlas = ExtResource("14")
+region = Rect2(64, 27, 32, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7io13"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80lua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pedk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cpt5f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qulyd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdc8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5ilw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3w8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2l2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahh2d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5i6h8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2xlo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ik7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0kv8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chwp2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxb57")
+}],
+"loop": true,
+"name": &"default",
+"speed": 50.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8untb"]
+atlas = ExtResource("16")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_darys"]
+atlas = ExtResource("16")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ppwk"]
+atlas = ExtResource("17")
+region = Rect2(0, 0, 49, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cpvn"]
+atlas = ExtResource("17")
+region = Rect2(0, 26, 49, 26)
+
+[node name="CloneMutant" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 32
+floor_constant_speed = true
+floor_max_angle = 0.8377580046653748
+floor_snap_length = 20.0
+script = ExtResource("1")
+look_at_player = true
+turn_sprite = false
+sprite = NodePath("Sprite")
+speed = Vector2(50, 0)
+gravity_scale = 0.5
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_aahbl")
+
+[node name="Body" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("2")
+
+[node name="Collision" type="CollisionShape2D" parent="Body"]
+visible = false
+shape = SubResource("RectangleShape2D_aahbl")
+debug_color = Color(0, 0.6431369781494141, 0.3098039925098419, 0.4196079969406128)
+
+[node name="EnemyAttacked" type="Node" parent="Body"]
+script = ExtResource("3")
+stomping_creation = SubResource("Resource_txxrc")
+stomping_scores = 100
+stomping_sound = ExtResource("7")
+killing_creation = SubResource("Resource_8ttht")
+killing_scores = 100
+killing_sound_succeeded = ExtResource("10")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, 16)
+texture = ExtResource("11")
+
+[node name="DeadRotating" type="Sprite2D" parent="Sprite"]
+visible = false
+texture = ExtResource("12")
+offset = Vector2(0, -18)
+region_rect = Rect2(0, 0, 44, 52)
+script = ExtResource("13")
+
+[node name="ActiveNOGI" type="AnimatedSprite2D" parent="Sprite"]
+position = Vector2(0, 11)
+sprite_frames = SubResource("SpriteFrames_7io13")
+autoplay = "default"
+script = ExtResource("15")
+enemy_center_node = NodePath("../..")
+
+[node name="Head" type="Sprite2D" parent="Sprite"]
+position = Vector2(-32, -44)
+texture = SubResource("AtlasTexture_8untb")
+centered = false
+
+[node name="Head2" type="Sprite2D" parent="Sprite"]
+position = Vector2(0, -44)
+texture = SubResource("AtlasTexture_darys")
+centered = false
+
+[node name="Hands" type="Sprite2D" parent="Sprite"]
+texture = SubResource("AtlasTexture_3ppwk")
+offset = Vector2(-1, 1)
+
+[node name="Hands2" type="Sprite2D" parent="Sprite"]
+texture = SubResource("AtlasTexture_6cpvn")
+offset = Vector2(-1, 1)
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.01960779912769794)
+rect = Rect2(-32, -32, 64, 64)
+script = ExtResource("18")
+metadata/_edit_lock_ = true
+
+[connection signal="collided_wall" from="." to="." method="turn_x"]
+[connection signal="killed_succeeded" from="Body/EnemyAttacked" to="." method="queue_free"]
+[connection signal="stomped_succeeded" from="Body/EnemyAttacked" to="." method="queue_free"]

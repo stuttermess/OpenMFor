@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=4]
+
+[ext_resource type="Texture2D" uid="uid://cvlwccjkgju1w" path="res://gfx/texts/bonus_level_unlocked.png" id="1"]
+[ext_resource type="Script" path="res://objects/coin_bonus_level/bonus_level_unlocked.gd" id="2"]
+
+[node name="BonusLevelUnlocked" type="Sprite2D"]
+visible = false
+position = Vector2(320, 192)
+texture = ExtResource("1")
+script = ExtResource("2")

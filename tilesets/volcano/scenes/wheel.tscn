@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=4]
+
+[ext_resource type="Script" path="res://tilesets/tanks/scenes/wheel_stop_on_death.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cwy3jolgs5y1r" path="res://tilesets/volcano/gfx/wheel.png" id="2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_viywy"]
+atlas = ExtResource("2")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3loup"]
+atlas = ExtResource("2")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ld348"]
+atlas = ExtResource("2")
+region = Rect2(0, 64, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3ossn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_viywy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3loup")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ld348")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Wheel" type="StaticBody2D"]
+process_mode = 3
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+process_mode = 1
+sprite_frames = SubResource("SpriteFrames_3ossn")
+autoplay = "default"

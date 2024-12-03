@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=4]
+
+[ext_resource type="Script" path="res://engine/objects/enemies/bullet_bill/launcher/bullet_launcher_base.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cy1ilh0qxu3f4" path="res://engine/objects/enemies/bullet_bill/launcher/texture/handler.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://cy4krigq0scxj" path="res://engine/objects/enemies/bullet_bill/launcher/texture/middle.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://c6rtd10yuhxrn" path="res://engine/objects/enemies/bullet_bill/launcher/texture/base.png" id="4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xenvp"]
+resource_local_to_scene = true
+size = Vector2(32, 1)
+
+[node name="BulletBillBase" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchor_top = -0.03299999982118607
+anchor_bottom = -0.03299999982118607
+offset_left = -16.0
+offset_top = -0.1599999964237213
+offset_right = 16.0
+offset_bottom = 31.84000015258789
+grow_horizontal = 2
+pivot_offset = Vector2(16, 16)
+size_flags_vertical = 0
+
+[node name="Obstacle" type="AnimatableBody2D" parent="."]
+visible = false
+position = Vector2(16, 0)
+collision_layer = 112
+collision_mask = 0
+script = ExtResource("1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle"]
+shape = SubResource("RectangleShape2D_xenvp")
+
+[node name="Handler" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 21.32799911499023
+offset_bottom = 32.0
+pivot_offset = Vector2(16, 16)
+texture = ExtResource("2")
+stretch_mode = 2
+
+[node name="Skull" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_top = 32.0
+offset_right = 32.0
+offset_bottom = 64.0
+pivot_offset = Vector2(16, 16)
+texture = ExtResource("3")
+
+[node name="Base" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_top = 64.0
+offset_right = 32.0
+pivot_offset = Vector2(16, 16)
+texture = ExtResource("4")
+stretch_mode = 1

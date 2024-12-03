@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=4]
+
+[ext_resource type="Script" path="res://engine/objects/effects/trail/trail.gd" id="1"]
+
+[node name="Trail" type="Sprite2D"]
+centered = false
+script = ExtResource("1")

@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=4]
+
+[ext_resource type="SpriteFrames" uid="uid://bed8whmi8m02a" path="res://engine/objects/effects/explosion/explosion.tres" id="1"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ca7ba"]
+blend_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_ng1pj"]
+colors = PackedColorArray(1, 1, 1, 0.3294120132923126, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ky1lf"]
+gradient = SubResource("Gradient_ng1pj")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.875, 0.125)
+metadata/_snap_enabled = true
+metadata/_snap_count = 8
+
+[node name="Explosion" type="AnimatedSprite2D"]
+modulate = Color(1.200000047683716, 1.200000047683716, 1.200000047683716, 1)
+z_index = 5
+sprite_frames = ExtResource("1")
+autoplay = "default"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+material = SubResource("CanvasItemMaterial_ca7ba")
+blend_mode = 2
+range_layer_min = -100
+texture = SubResource("GradientTexture2D_ky1lf")
+
+[connection signal="animation_finished" from="." to="." method="queue_free"]

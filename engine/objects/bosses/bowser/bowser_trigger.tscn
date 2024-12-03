@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=4]
+
+[ext_resource type="Script" path="res://engine/objects/bosses/bowser/bowser_trigger.gd" id="1"]
+
+[node name="BowserTrigger" type="Path2D"]
+editor_description = "This should be placed ONLY as DIRECT CHILD of the level, and just under the camera"
+script = ExtResource("1")
+
+[node name="RouteFollower" type="PathFollow2D" parent="."]
+rotates = false
+loop = false

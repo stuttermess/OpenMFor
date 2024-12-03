@@ -1,0 +1,90 @@
+[gd_scene load_steps=11 format=4]
+
+[ext_resource type="Script" path="res://engine/objects/p_switch/p_switch.gd" id="1"]
+[ext_resource type="Script" path="res://engine/objects/p_switch/p_switch_activator.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bcn1lxv3vx4rt" path="res://engine/objects/p_switch/texture.png" id="3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_se3ij"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_abx5o"]
+size = Vector2(32, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1mer2"]
+size = Vector2(32, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5c86w"]
+atlas = ExtResource("3")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1kne"]
+atlas = ExtResource("3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nj3rt"]
+atlas = ExtResource("3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ycii"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5c86w")
+}],
+"loop": false,
+"name": &"activated",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1kne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nj3rt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="PSwitch" type="CharacterBody2D"]
+collision_layer = 116
+collision_mask = 64
+script = ExtResource("1")
+gravity_scale = 0.5
+
+[node name="Activator" type="StaticBody2D" parent="."]
+collision_layer = 16
+script = ExtResource("2")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Activator"]
+visible = false
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_se3ij")
+one_way_collision = true
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_abx5o")
+metadata/_edit_lock_ = true
+
+[node name="Collision2" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_1mer2")
+disabled = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_4ycii")
+autoplay = "default"
+metadata/_edit_lock_ = true
+
+[node name="Duration" type="Timer" parent="."]
+wait_time = 11.4
+one_shot = true
+
+[connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]

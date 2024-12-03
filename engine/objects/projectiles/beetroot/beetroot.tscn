@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=4]
+
+[ext_resource type="Script" path="res://engine/objects/projectiles/beetroot/beetroot.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cd4tiiirqgtvi" path="res://engine/objects/projectiles/beetroot/texture.png" id="2"]
+[ext_resource type="Script" path="res://engine/objects/projectiles/projectile_attack.gd" id="3"]
+[ext_resource type="Script" path="res://engine/objects/projectiles/beetroot/beetroot_drown.gd" id="4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t82ul"]
+size = Vector2(20, 32)
+
+[node name="Beetroot" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 192
+script = ExtResource("1")
+speed = Vector2(120, -300)
+gravity_scale = 0.4
+correct_collision = false
+
+[node name="Texture" type="Sprite2D" parent="."]
+texture = ExtResource("2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_t82ul")
+
+[node name="Attack" type="ShapeCast2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_t82ul")
+target_position = Vector2(0, 0)
+max_results = 8
+collision_mask = 67
+collide_with_areas = true
+script = ExtResource("3")
+killer_type = &"beetroot"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-12, -16, 24, 512)
+
+[node name="Underwater" type="Node" parent="."]
+script = ExtResource("4")
+
+[connection signal="collided_ceiling" from="." to="." method="bounce" binds= [true, true]]
+[connection signal="collided_floor" from="." to="." method="bounce"]
+[connection signal="collided_wall" from="." to="." method="bounce"]
+[connection signal="run_out" from="." to="Attack" method="queue_free"]
+[connection signal="killed_notify" from="Attack" to="." method="bounce" binds= [false]]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="queue_free"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=4]
+
+[ext_resource type="Script" path="res://engine/components/cam_area/transition_camera/transition_camera.gd" id="1"]
+
+[node name="TransitionCamera" type="Camera2D" groups=["#transition_camera"]]
+script = ExtResource("1")

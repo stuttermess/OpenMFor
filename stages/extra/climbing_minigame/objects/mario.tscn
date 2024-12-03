@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=4]
+
+[ext_resource type="PackedScene" uid="uid://1do11cr84k7y" path="res://engine/objects/players/player.tscn" id="1"]
+[ext_resource type="Script" path="res://stages/extra/climbing_minigame/objects/mario.gd" id="2"]
+
+[node name="Mario" instance=ExtResource("1")]
+position = Vector2(320, -16)
+script = ExtResource("2")
+death_music_ignore_pause = true
+death_wait_time = 10.0
+death_stop_music = false

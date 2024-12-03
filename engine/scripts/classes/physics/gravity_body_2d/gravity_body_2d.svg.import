@@ -1,0 +1,18 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://d323lll1rbt45"
+path="res://.godot/imported/gravity_body_2d.svg-61b7b039274f9ee4b94c09fcc2436e62.ctex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://engine/scripts/classes/physics/gravity_body_2d/gravity_body_2d.svg"
+dest_files=["res://.godot/imported/gravity_body_2d.svg-61b7b039274f9ee4b94c09fcc2436e62.ctex"]
+
+[params]
+
+dummy_value_ignore_me=0

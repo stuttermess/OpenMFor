@@ -1,0 +1,168 @@
+[gd_scene load_steps=24 format=4]
+
+[ext_resource type="Script" path="res://engine/scripts/classes/level_cutscene/level_cutscene.gd" id="1"]
+[ext_resource type="Script" path="res://engine/scripts/classes/level_cutscene/cutscenes/water_cutscene.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://1do11cr84k7y" path="res://engine/objects/players/player.tscn" id="3"]
+[ext_resource type="Script" path="res://objects/player_camera_custom/player_camera_custom.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://yqftjpfskche" path="res://engine/components/cam_area/cam_area.tscn" id="5"]
+[ext_resource type="TileSet" uid="uid://dtvs1rult8kbe" path="res://tilesets/overworld_green/overworld_green.tres" id="6"]
+[ext_resource type="TileSet" uid="uid://7ahm7i5kbbn6" path="res://tilesets/underwater/underwater.tres" id="7"]
+[ext_resource type="PackedScene" uid="uid://dh4kf1w7jyseo" path="res://engine/objects/warps/pipe_in.tscn" id="8"]
+[ext_resource type="AudioStream" uid="uid://b76ae2v10akqg" path="res://engine/objects/players/prefabs/sounds/pipe_cutscene.wav" id="9"]
+[ext_resource type="PackedScene" uid="uid://ugxjxrdao5el" path="res://engine/components/hud/hud.tscn" id="10"]
+[ext_resource type="Texture2D" uid="uid://dmv5rev5xia3u" path="res://gfx/backgrounds/clouds_looping.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://mpdkiuduprqj" path="res://gfx/fancy_graphics/clouds_looping_alpha.png" id="12"]
+[ext_resource type="Script" path="res://engine/scripts/nodes/effects/quality_visible.gd" id="13"]
+[ext_resource type="Texture2D" uid="uid://vmkr0eaks2fr" path="res://gfx/fancy_graphics/bighill.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://6bwpp568bmq0" path="res://gfx/fancy_graphics/giant_clouds.png" id="15"]
+[ext_resource type="PackedScene" uid="uid://cgw53vgjiurmx" path="res://objects/generic_water/generic_water_custom.tscn" id="16"]
+[ext_resource type="Script" path="res://objects/chorniy_mario/chorniy_cutscene_spawner.gd" id="17"]
+
+[sub_resource type="Gradient" id="Gradient_ehahp"]
+colors = PackedColorArray(0, 0.4352940022945404, 0.8745099902153015, 1, 0.8235290050506592, 0.9176470041275024, 0.9725490212440491, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ucevc"]
+gradient = SubResource("Gradient_ehahp")
+width = 640
+height = 480
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_gr2nd"]
+offsets = PackedFloat32Array(0, 0.4375)
+colors = PackedColorArray(0.313726007938385, 0.5019609928131104, 0.8784310221672058, 1, 0, 0.062745101749897, 0.1254899948835373, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 16
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7hp24"]
+gradient = SubResource("Gradient_gr2nd")
+width = 480
+
+[sub_resource type="Gradient" id="Gradient_jmgvy"]
+colors = PackedColorArray(0.4392159879207611, 0.5803920030593872, 0.8784310221672058, 1, 0.4392159879207611, 0.5803920030593872, 0.8784310221672058, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jxy5b"]
+gradient = SubResource("Gradient_jmgvy")
+width = 240
+height = 240
+fill = 2
+fill_from = Vector2(1, 1)
+fill_to = Vector2(0, 1)
+
+[node name="WaterCutscene" type="Node2D"]
+script = ExtResource("1")
+goto_path = "res://stages/world_7/level_7-2.tscn"
+
+[node name="CutsceneLogic" type="Node" parent="."]
+script = ExtResource("2")
+
+[node name="JumpMarker" type="Marker2D" parent="CutsceneLogic"]
+position = Vector2(320, 416)
+
+[node name="Mario" parent="." instance=ExtResource("3")]
+position = Vector2(0, 400)
+gravity_scale = 0.25
+
+[node name="PlayerCamera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_bottom = 480
+script = ExtResource("4")
+
+[node name="CamArea" parent="." instance=ExtResource("5")]
+offset_right = 640.0
+offset_bottom = 480.0
+metadata/_edit_lock_ = true
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("6")
+format = 2
+layer_0/tile_data = PackedInt32Array(983051, 65536, 2, 917515, 65536, 1, 851979, 65536, 0, 983050, 65536, 2, 917514, 65536, 1, 983049, 65536, 2, 917513, 65536, 1, 851977, 65536, 0, 983048, 65536, 2, 917512, 65536, 1, 851976, 65536, 0, 983047, 65536, 2, 917511, 65536, 1, 851975, 65536, 0, 983046, 65536, 2, 917510, 65536, 1, 851974, 65536, 0, 983045, 65536, 2, 917509, 65536, 1, 851973, 65536, 0, 983044, 65536, 2, 917508, 65536, 1, 851972, 65536, 0, 983043, 65536, 2, 917507, 65536, 1, 851971, 65536, 0, 983042, 65536, 2, 917506, 65536, 1, 851970, 65536, 0, 983041, 65536, 2, 917505, 65536, 1, 851969, 65536, 0, 983040, 65536, 2, 917504, 65536, 1, 851968, 65536, 0, 1048575, 0, 2, 983039, 0, 1, 917503, 0, 0, 786437, 2, 458752, 786435, 2, 458752, 458764, 2, 131072, 196626, 2, 131072, 131081, 2, 131072, 262146, 2, 131072, 524293, 2, 131072, 851980, 131072, 0, 917516, 131072, 1, 983052, 131072, 2, 851978, 65536, 0, 786434, 2, 458752, 786436, 2, 458752)
+layer_1/name = "Layer1"
+layer_1/tile_data = PackedInt32Array(786434, 2, 851968, 786442, 2, 196608, 786439, 2, 65536)
+
+[node name="TileMap2" type="TileMap" parent="."]
+tile_set = ExtResource("7")
+format = 2
+layer_0/tile_data = PackedInt32Array(851981, 0, 0, 917517, 0, 0, 983053, 0, 0)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Gradient" type="Sprite2D" parent="ParallaxBackground"]
+texture = SubResource("GradientTexture2D_ucevc")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="PipeIn" parent="." instance=ExtResource("8")]
+position = Vector2(784, 384)
+rotation = -1.57079005241394
+warp_direction = 1
+warp_to_scene = "res://stages/world_1/level_1-2.tscn"
+warping_speed = 50.0
+warping_sound = ExtResource("9")
+use_circle_transition = true
+
+[node name="HUD" parent="." instance=ExtResource("10")]
+visible = false
+
+[node name="CloudsLooping" type="Sprite2D" parent="."]
+texture_repeat = 2
+texture = ExtResource("11")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 28)
+
+[node name="CloudsLoopingAlpha" type="Sprite2D" parent="."]
+z_index = -10
+texture_repeat = 2
+texture = ExtResource("12")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 48)
+script = ExtResource("13")
+
+[node name="Node2D" type="Node2D" parent="."]
+z_index = -20
+script = ExtResource("13")
+
+[node name="Node2D2" type="Node2D" parent="."]
+script = ExtResource("13")
+medium = true
+
+[node name="background" type="Sprite2D" parent="Node2D2"]
+modulate = Color(0.4784309864044189, 0.4784309864044189, 0.4784309864044189, 1)
+z_index = -1
+position = Vector2(640, 436)
+rotation = 1.570799946784973
+scale = Vector2(1, 640)
+texture = SubResource("GradientTexture1D_7hp24")
+centered = false
+script = ExtResource("13")
+maximum = false
+medium = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D2"]
+z_index = -50
+position = Vector2(368, 284)
+texture = SubResource("GradientTexture2D_jxy5b")
+region_enabled = true
+region_rect = Rect2(0, 0, 544, 304)
+
+[node name="Node2D3" type="Node2D" parent="."]
+z_index = -20
+script = ExtResource("13")
+
+[node name="GiantHill" type="Sprite2D" parent="Node2D3"]
+position = Vector2(176, 288)
+texture = ExtResource("14")
+
+[node name="GiantClouds4" type="Sprite2D" parent="Node2D3"]
+position = Vector2(608, 256)
+texture = ExtResource("15")
+
+[node name="Water" parent="." instance=ExtResource("16")]
+
+[node name="ChorniyCutsceneSpawner" type="Node" parent="."]
+script = ExtResource("17")

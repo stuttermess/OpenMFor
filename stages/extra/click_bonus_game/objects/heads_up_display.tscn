@@ -1,0 +1,156 @@
+[gd_scene load_steps=23 format=4]
+
+[ext_resource type="AudioStream" uid="uid://bn1cfpnnh836i" path="res://stages/extra/click_bonus_game/sfx/game_started-.wav" id="1"]
+[ext_resource type="Script" path="res://stages/extra/click_bonus_game/scripts/text_find_yellow_stars.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bl1o3blt8l22y" path="res://stages/extra/click_bonus_game/textures/find_yellow_stars.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bp2rfaqv2mwvr" path="res://stages/extra/click_bonus_game/textures/counter.png" id="4"]
+[ext_resource type="Script" path="res://stages/extra/click_bonus_game/scripts/text_number_of_tries.gd" id="5"]
+[ext_resource type="Texture2D" uid="uid://cpckbw1sxo7u5" path="res://stages/extra/click_bonus_game/textures/number_of_tries.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://cnkotj5u0xogf" path="res://stages/extra/click_bonus_game/textures/congratulations.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://c58hm5sffo0ke" path="res://stages/extra/click_bonus_game/textures/use_mouse.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://b2nuemn24gx7e" path="res://stages/extra/click_bonus_game/textures/find_me.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://me5h0jn7ot33" path="res://stages/extra/click_bonus_game/textures/try_next_time.png" id="10"]
+[ext_resource type="Script" path="res://stages/extra/click_bonus_game/scripts/gui_star.gd" id="11"]
+[ext_resource type="Texture2D" uid="uid://vdnmtnh6a3mn" path="res://stages/extra/click_bonus_game/textures/bonus_star.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://b6i0laheaghh6" path="res://gfx/fancy_graphics/sparkle_giant.png" id="13"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqfj7"]
+atlas = ExtResource("4")
+region = Rect2(24, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irxm2"]
+atlas = ExtResource("4")
+region = Rect2(0, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqjpn"]
+atlas = ExtResource("4")
+region = Rect2(24, 0, 24, 32)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l87es"]
+load_path = "res://.godot/imported/counter.png-26febca2c4460e5e670a386b2ca6a7fe.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w05e7"]
+atlas = SubResource("CompressedTexture2D_l87es")
+region = Rect2(0, 0, 24, 32)
+
+[sub_resource type="Curve2D" id="Curve2D_82m0q"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -128, 160, -158, 1, 158, -1, 320, 160, 158, 0, -158, 0, 320, 368, -158, 0, 158, 0, 320, 160, 159, 2, -159, -2, 336, 352, -158, 0, 158, 0, 320, 160, 0, 0, 0, 0, 800, 160)
+}
+point_count = 7
+
+[sub_resource type="Gradient" id="Gradient_yr2b2"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xnb34"]
+gradient = SubResource("Gradient_yr2b2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hybjb"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(32, 32, 1)
+gravity = Vector3(0, 0, 0)
+scale_min = 0.07999999821186066
+scale_max = 0.07999999821186066
+color_ramp = SubResource("GradientTexture1D_xnb34")
+
+[node name="Heads-Up Display" type="CanvasLayer"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1")
+bus = &"1D Sound"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 640.0
+offset_bottom = 480.0
+mouse_filter = 2
+color = Color(0, 0, 0.7058820128440857, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 640.0
+offset_bottom = 32.0
+mouse_filter = 2
+alignment = 1
+script = ExtResource("2")
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("3")
+stretch_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -6
+
+[node name="Value1" type="TextureRect" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_lqfj7")
+
+[node name="Value2" type="TextureRect" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_irxm2")
+
+[node name="Tries" type="HBoxContainer" parent="."]
+offset_top = 448.0
+offset_right = 640.0
+offset_bottom = 480.0
+mouse_filter = 2
+alignment = 1
+script = ExtResource("5")
+
+[node name="TextureRect" type="TextureRect" parent="Tries"]
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("6")
+stretch_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Tries"]
+layout_mode = 2
+theme_override_constants/separation = -6
+
+[node name="Value1" type="TextureRect" parent="Tries/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_vqjpn")
+
+[node name="Value2" type="TextureRect" parent="Tries/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_w05e7")
+
+[node name="Congratulations" type="Sprite2D" parent="."]
+position = Vector2(320, 240)
+texture = ExtResource("7")
+
+[node name="UseMouse" type="Sprite2D" parent="."]
+position = Vector2(352, 240)
+texture = ExtResource("8")
+
+[node name="FindMe" type="Sprite2D" parent="."]
+position = Vector2(320, 272)
+texture = ExtResource("9")
+
+[node name="TryNextTime" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(320, 224)
+texture = ExtResource("10")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_82m0q")
+script = ExtResource("11")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-128, 160)
+rotates = false
+loop = false
+
+[node name="BonusStar" type="Sprite2D" parent="Path2D/PathFollow2D"]
+position = Vector2(-1.903820037841797, -0.2552489936351776)
+texture = ExtResource("12")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Path2D/PathFollow2D/BonusStar"]
+process_material = SubResource("ParticleProcessMaterial_hybjb")
+texture = ExtResource("13")
+
+[node name="_Timer_17714" type="Timer" parent="Path2D/PathFollow2D"]
+wait_time = 0.2
+one_shot = true

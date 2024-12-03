@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=4]
+
+[ext_resource type="Texture2D" uid="uid://caixe24mix6j3" path="res://stages/extra/click_bonus_game/textures/star_finder_cursor.png" id="1"]
+[ext_resource type="Script" path="res://stages/extra/click_bonus_game/objects/cursor_effect/cursor_effect.gd" id="2"]
+
+[node name="CursorEffect" type="Sprite2D"]
+z_index = 199
+texture = ExtResource("1")
+script = ExtResource("2")

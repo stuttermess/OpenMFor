@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=4]
+
+[ext_resource type="PackedScene" uid="uid://d3srfe2r6fg2u" path="res://engine/objects/core/music_loader/music_loader.tscn" id="1"]
+[ext_resource type="Script" path="res://objects/music_loader_custom/music_loader_custom.gd" id="2"]
+[ext_resource type="AudioStream" uid="uid://c7matagtmeja5" path="res://music/complete_tweaked.ogg" id="3"]
+
+[node name="MusicLoader" instance=ExtResource("1")]
+script = ExtResource("2")
+tweaked_completion_music = ExtResource("3")
+ignore_fade_in_tweak = false
+music_var_1 = []
+music_var_2 = []
+music_var_3 = []
+var_1_volume_db = [0.0]
+var_1_start_from_sec = [0.0]
+var_2_volume_db = [0.0]
+var_2_start_from_sec = [0.0]
+var_3_volume_db = [0.0]
+var_3_start_from_sec = [0.0]
+boss_music_var_1 = null
+boss_music_var_2 = null
+boss_music_var_3 = null
+boss_music_volume_db = [0.0]
+boss_music_start_from_sec = [0.0]

@@ -1,0 +1,114 @@
+[gd_scene load_steps=12 format=4]
+
+[ext_resource type="Script" path="res://engine/objects/items/ice_block/ice_block.gd" id="1"]
+[ext_resource type="Script" path="res://engine/scripts/nodes/enemies/enemy_attacked.gd" id="2"]
+[ext_resource type="Script" path="res://engine/objects/projectiles/projectile_attack.gd" id="3"]
+[ext_resource type="Shader" path="res://engine/shaders/highlight.gdshader" id="4"]
+[ext_resource type="Texture2D" uid="uid://8jqfncop8x26" path="res://engine/objects/items/ice_block/ice_block.png" id="5"]
+[ext_resource type="Script" path="res://engine/scripts/nodes/vision/vision.gd" id="6"]
+[ext_resource type="PackedScene" uid="uid://djctwyk8b0tpm" path="res://engine/node_modifiers/grabbable_modifier/grabbable_modifier.tscn" id="7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ena34"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q60fw"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjc0d"]
+size = Vector2(32, 32)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jwnle"]
+shader = ExtResource("4")
+shader_parameter/highlight_color = Color(1, 1, 1, 1)
+shader_parameter/frequency = 0.32
+shader_parameter/highlight_speed = 10.0
+shader_parameter/highlight_width = 32.0
+
+[node name="IceBlock" type="CharacterBody2D"]
+collision_layer = 112
+collision_mask = 64
+script = ExtResource("1")
+gravity_dir_rotation = false
+gravity_scale = 0.5
+auto_update_up_direction = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_ena34")
+
+[node name="Body" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+collision_mask = 7
+
+[node name="Collision" type="CollisionShape2D" parent="Body"]
+visible = false
+shape = SubResource("RectangleShape2D_q60fw")
+debug_color = Color(0, 0.6431369781494141, 0.3098039925098419, 0.4196079969406128)
+
+[node name="EnemyAttacked" type="Node" parent="Body"]
+script = ExtResource("2")
+stomping_enabled = false
+stomping_hurtable = false
+stomping_standard = Vector2(0, 0)
+killing_immune = {
+"beetroot": false,
+"boomerang": true,
+"fireball": false,
+"hammer": true,
+"head": false,
+"iceball": true,
+"shell": true,
+"shell_defence": 0,
+"shell_forced": true,
+"starman": true
+}
+turn_into_coin_on_level_end = false
+frozen_enabled = false
+
+[node name="Attack" type="ShapeCast2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_fjc0d")
+target_position = Vector2(0, 0)
+max_results = 8
+collision_mask = 3
+collide_with_areas = true
+script = ExtResource("3")
+killer_type = &"iceblock"
+is_reflectable = true
+
+[node name="SpriteNP" type="NinePatchRect" parent="."]
+material = SubResource("ShaderMaterial_jwnle")
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+pivot_offset = Vector2(16, 16)
+texture = ExtResource("5")
+region_rect = Rect2(0, 0, 40, 40)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+metadata/_edit_lock_ = true
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.01960779912769794)
+position = Vector2(1.430509996680485e-06, 1.430509996680485e-06)
+rect = Rect2(-16, -16, 32, 32)
+script = ExtResource("6")
+metadata/_edit_lock_ = true
+
+[node name="TimerDestroy" type="Timer" parent="."]
+process_mode = 1
+one_shot = true
+
+[node name="GrabbableModifier" parent="." instance=ExtResource("7")]
+
+[connection signal="killed_succeeded" from="Body/EnemyAttacked" to="." method="break_ice" binds= [true, true]]
+[connection signal="killed_notify" from="Attack" to="." method="break_ice" binds= [true, false]]
+[connection signal="grabbed" from="GrabbableModifier" to="." method="pause_timedown" binds= [true]]
+[connection signal="ungrabbed" from="GrabbableModifier" to="." method="_on_ungrabbed"]
+[connection signal="ungrabbed" from="GrabbableModifier" to="." method="start_timedown" binds= [true]]

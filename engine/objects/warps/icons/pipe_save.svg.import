@@ -1,0 +1,18 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bq2ut668ku1v0"
+path="res://.godot/imported/pipe_save.svg-48405971d7859ab651673243399dbafc.ctex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://engine/objects/warps/icons/pipe_save.svg"
+dest_files=["res://.godot/imported/pipe_save.svg-48405971d7859ab651673243399dbafc.ctex"]
+
+[params]
+
+dummy_value_ignore_me=0

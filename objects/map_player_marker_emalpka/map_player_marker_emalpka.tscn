@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=4]
+
+[ext_resource type="Script" path="res://objects/map_player_marker_emalpka/map_player_marker_emalpka.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cse6urucn5q0b" path="res://objects/map_player_marker_emalpka/malpka.png" id="2"]
+
+[node name="MapPlayerMarkerEmalpka" type="Marker2D"]
+script = ExtResource("1")
+count_as_level = false
+
+[node name="Malpka" type="Sprite2D" parent="."]
+position = Vector2(30, 0)
+texture = ExtResource("2")

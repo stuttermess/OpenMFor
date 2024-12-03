@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=4]
+
+[ext_resource type="PackedScene" uid="uid://bvolo50530iv7" path="res://engine/objects/enemies/bullet_bill/launcher/bullet_launcher.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://dcjv66rihg28l" path="res://engine/objects/enemies/bullet_bill/bill/missile_bill.tscn" id="2"]
+[ext_resource type="Script" path="res://engine/scripts/resources/instance_node2d/instance_node2d.gd" id="3"]
+[ext_resource type="AudioStream" uid="uid://buwrmd40ulbf5" path="res://engine/objects/enemies/bullet_bill/bill/sounds/missile_bullet.ogg" id="4"]
+
+[sub_resource type="Resource" id="Resource_qbi1h"]
+script = ExtResource("3")
+creation_nodepack = ExtResource("2")
+trans_offset = Vector2(0, 0)
+trans_inheritances = 6
+trans_rotation = 0.0
+trans_scale = Vector2(1, 1)
+trans_skew = 0.0
+visi_z_index = 0
+visi_z_as_relative = true
+visi_y_sort_enabled = false
+custom_vars = {}
+custom_script = null
+
+[sub_resource type="Animation" id="Animation_c4s0n"]
+length = 0.001000000047497451
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Launcher:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xejw3"]
+resource_name = "default"
+length = 0.2000000029802322
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Launcher:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1000000014901161, 0.2000000029802322),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.3568629920482635, 0.2901960015296936, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k3typ"]
+_data = {
+"RESET": SubResource("Animation_c4s0n"),
+"default": SubResource("Animation_xejw3")
+}
+
+[node name="MissileBulletLauncher" instance=ExtResource("1")]
+bullet_bill = SubResource("Resource_qbi1h")
+bullet_speed = 200.0
+first_shooting_delay = 2.5
+shooting_delay_min = 3.5
+shooting_delay_max = 6.5
+shooting_sound = ExtResource("4")
+sound_pitch_max = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+libraries = {
+"": SubResource("AnimationLibrary_k3typ")
+}
+autoplay = "default"

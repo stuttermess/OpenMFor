@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=4]
+
+[ext_resource type="Script" path="res://engine/objects/fluid/swimming/control_resize_logic.gd" id="1"]
+[ext_resource type="Shader" path="res://engine/shaders/animated_texture.gdshader" id="2"]
+[ext_resource type="Texture2D" uid="uid://bi5kq6ccklanm" path="res://engine/objects/fluid/textures/water_smooth.png" id="3"]
+[ext_resource type="Script" path="res://engine/objects/fluid/swimming/swimming_area.gd" id="4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a78gj"]
+shader = ExtResource("2")
+shader_parameter/frame_size = Vector2(1, 8)
+shader_parameter/frame_count = 8
+shader_parameter/frames_per_row = 1
+shader_parameter/time_scale = 6.0
+shader_parameter/frame_offset = 0
+shader_parameter/sprite_sheet = ExtResource("3")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6qe0v"]
+noise_type = 5
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3cbwp"]
+width = 64
+height = 16
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_6qe0v")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_08xmy"]
+size = Vector2(1, 1)
+
+[node name="Water" type="VBoxContainer"]
+modulate = Color(1, 1, 1, 0.5450980067253113)
+offset_right = 64.0
+offset_bottom = 16.0
+theme_override_constants/separation = 0
+script = ExtResource("1")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = 31
+texture_repeat = 2
+material = SubResource("ShaderMaterial_a78gj")
+layout_mode = 2
+size_flags_vertical = 0
+texture = SubResource("NoiseTexture2D_3cbwp")
+stretch_mode = 1
+
+[node name="Area2D" type="Area2D" parent="." groups=["#water"]]
+visible = false
+z_index = 1
+collision_layer = 128
+collision_mask = 7
+script = ExtResource("4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_08xmy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 31
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.3450979888439178, 0.5333330035209656, 0.8784310221672058, 1)

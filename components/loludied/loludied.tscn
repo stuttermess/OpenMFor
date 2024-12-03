@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=4]
+
+[ext_resource type="Script" path="res://engine/components/pause/pause_layer.gd" id="1"]
+[ext_resource type="Script" path="res://components/loludied/loludied.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bxwqpu8vuvf54" path="res://components/loludied/kevin/gameover.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://nf8a0fnwq12" path="res://components/loludied/kevin/retry.png" id="4"]
+
+[node name="Loludied" type="CanvasLayer"]
+layer = 100
+script = ExtResource("1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 100
+script = ExtResource("2")
+
+[node name="Node2D" type="Node2D" parent="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Node2D"]
+offset_right = 640.0
+offset_bottom = 480.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.443136990070343)
+
+[node name="Node2D" type="Node2D" parent="CanvasLayer/Node2D"]
+position = Vector2(320, 240)
+
+[node name="Gameover" type="Sprite2D" parent="CanvasLayer/Node2D/Node2D"]
+position = Vector2(-2, -18)
+texture = ExtResource("3")
+
+[node name="Retry" type="Sprite2D" parent="CanvasLayer/Node2D/Node2D"]
+position = Vector2(-2, 30)
+texture = ExtResource("4")

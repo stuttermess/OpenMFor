@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=4]
+
+[ext_resource type="PackedScene" uid="uid://cex5bahi2ueay" path="res://tilesets/starland/scenes/starland_hill.tscn" id="1"]
+
+[node name="StarlandHill" instance=ExtResource("1")]
+position = Vector2(0, 16)

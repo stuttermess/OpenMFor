@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=4]
+
+[ext_resource type="Script" path="res://engine/objects/enemies/volcano/volcano.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://b4grcqwkhdc12" path="res://engine/objects/enemies/volcano/volcano.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://d2pjyhp6b03xp" path="res://engine/objects/enemies/volcano/volcano-heading.png" id="3"]
+
+[sub_resource type="Animation" id="Animation_jdupm"]
+length = 0.001000000047497451
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Volcano-heading:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.7599999904632568, 0.7599999904632568, 0.7599999904632568, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hiemt"]
+resource_name = "volcano-heading"
+length = 0.300000011920929
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Volcano-heading:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1333329975605011, 0.300000011920929),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.7599999904632568, 0.7599999904632568, 0.7599999904632568, 1), Color(1.299999952316284, 1.299999952316284, 1.299999952316284, 1), Color(0.7599999904632568, 0.7599999904632568, 0.7599999904632568, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4xvf6"]
+_data = {
+"RESET": SubResource("Animation_jdupm"),
+"volcano-heading": SubResource("Animation_hiemt")
+}
+
+[node name="Volcano" type="Node2D"]
+script = ExtResource("1")
+
+[node name="Volcano" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("2")
+
+[node name="Volcano-heading" type="Sprite2D" parent="."]
+modulate = Color(0.7599999904632568, 0.7599999904632568, 0.7599999904632568, 1)
+z_index = -1
+position = Vector2(-1, -82)
+texture = ExtResource("3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4xvf6")
+}
+autoplay = "volcano-heading"
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -96)
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -40)
+scale = Vector2(3.200000047683716, 5.599999904632568)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=4]
+
+[ext_resource type="PackedScene" uid="uid://bnr3rfhkdf6j2" path="res://engine/objects/bumping_blocks/question_block/question_block.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://b8kgbn8f7lvf0" path="res://engine/objects/items/coin/coin.tscn" id="2"]
+[ext_resource type="Script" path="res://engine/objects/powerups/instance_powerup.gd" id="3"]
+[ext_resource type="SpriteFrames" uid="uid://rk3g48ajkgtk" path="res://objects/gray_qblocks/gray_qblock.tres" id="4"]
+[ext_resource type="Texture2D" uid="uid://cv4ajosu5y5xl" path="res://engine/objects/items/coin/texture.png" id="5"]
+
+[sub_resource type="Resource" id="Resource_7jw7h"]
+script = ExtResource("3")
+resource_local_to_scene = true
+creation_fallback_node = null
+creation_nodepack = ExtResource("2")
+trans_offset = Vector2(0, 0)
+trans_inheritances = 7
+trans_rotation = 0.0
+trans_scale = Vector2(1, 1)
+trans_skew = 0.0
+visi_z_index = 0
+visi_z_as_relative = true
+visi_y_sort_enabled = false
+custom_vars = {}
+custom_script = null
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3wug"]
+atlas = ExtResource("5")
+region = Rect2(0, 0, 32, 32)
+
+[node name="QuestionBlock" instance=ExtResource("1")]
+result = SubResource("Resource_7jw7h")
+
+[node name="AnimatedSprite2D" parent="Sprites" index="1"]
+sprite_frames = ExtResource("4")
+
+[node name="ItemDisplayer" parent="Sprites" index="2"]
+texture = SubResource("AtlasTexture_t3wug")

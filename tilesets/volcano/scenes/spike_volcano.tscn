@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=4]
+
+[ext_resource type="PackedScene" uid="uid://cpf0e00tynf01" path="res://engine/objects/enemies/piranha_plants/piranha_head_gray.tscn" id="1"]
+
+[node name="Spike" type="Node2D"]
+
+[node name="PiranhaHeadGray" parent="." instance=ExtResource("1")]

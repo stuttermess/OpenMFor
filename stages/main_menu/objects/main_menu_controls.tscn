@@ -1,0 +1,93 @@
+[gd_scene load_steps=15 format=4]
+
+[ext_resource type="Script" path="res://engine/components/ui/generic/menu_items_controller.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://evhfa2vrv1qe" path="res://stages/main_menu/textures/menu_start.png" id="2"]
+[ext_resource type="Script" path="res://engine/scenes/main_menu/scripts/start_selection.gd" id="3"]
+[ext_resource type="AudioStream" uid="uid://bi0m6xn5201en" path="res://engine/scenes/main_menu/sounds/lets.wav" id="4"]
+[ext_resource type="Texture2D" uid="uid://cghp80n5ywexv" path="res://stages/main_menu/textures/menu_options.png" id="5"]
+[ext_resource type="Script" path="res://engine/scenes/main_menu/scripts/option_selection.gd" id="6"]
+[ext_resource type="Texture2D" uid="uid://cwyr2p2ptma1l" path="res://stages/main_menu/textures/menu_tweaks.png" id="7"]
+[ext_resource type="Script" path="res://stages/main_menu/scripts/tweaks_sel.gd" id="8"]
+[ext_resource type="Texture2D" uid="uid://bj2kljv3aatjj" path="res://stages/main_menu/textures/menu_soundtrack.png" id="9"]
+[ext_resource type="Script" path="res://stages/main_menu/scripts/website_sel.gd" id="10"]
+[ext_resource type="Texture2D" uid="uid://dxnhqp8pgba0f" path="res://stages/main_menu/textures/menu_link.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://cao0jvdq3cxj8" path="res://stages/main_menu/textures/menu_discord.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://b4yr3hnd8qkk7" path="res://stages/main_menu/textures/menu_quit.png" id="13"]
+[ext_resource type="Script" path="res://engine/scenes/main_menu/scripts/quit_selection.gd" id="14"]
+
+[node name="MainMenuControls" type="VBoxContainer"]
+physics_interpolation_mode = 1
+offset_right = 104.0
+offset_bottom = 76.0
+script = ExtResource("1")
+
+[node name="Start" type="TextureRect" parent="."]
+physics_interpolation_mode = 0
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2")
+stretch_mode = 3
+script = ExtResource("3")
+selected_sound = ExtResource("4")
+
+[node name="Options" type="TextureRect" parent="."]
+physics_interpolation_mode = 0
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("5")
+stretch_mode = 3
+script = ExtResource("6")
+
+[node name="Tweaks" type="TextureRect" parent="."]
+physics_interpolation_mode = 0
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("7")
+stretch_mode = 3
+script = ExtResource("8")
+
+[node name="Soundtrack" type="TextureRect" parent="."]
+physics_interpolation_mode = 0
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("9")
+stretch_mode = 3
+script = ExtResource("10")
+link = "https://rnx.su/s/mc6tbKfSsAaGRNm"
+
+[node name="TextureRect" type="TextureRect" parent="Soundtrack"]
+physics_interpolation_mode = 0
+layout_mode = 0
+offset_left = 189.0
+offset_right = 221.0
+offset_bottom = 30.0
+texture = ExtResource("11")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Discord" type="TextureRect" parent="."]
+physics_interpolation_mode = 0
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("12")
+stretch_mode = 3
+script = ExtResource("10")
+link = "https://discord.gg/VwgV6GmwXv"
+
+[node name="TextureRect2" type="TextureRect" parent="Discord"]
+physics_interpolation_mode = 0
+layout_mode = 0
+offset_left = 158.0
+offset_right = 190.0
+offset_bottom = 32.0
+texture = ExtResource("11")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Quit" type="TextureRect" parent="."]
+physics_interpolation_mode = 0
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("13")
+stretch_mode = 3
+script = ExtResource("14")

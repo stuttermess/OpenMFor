@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=4]
+
+[ext_resource type="Script" path="res://engine/objects/fluid/swimming/control_resize_logic.gd" id="1"]
+[ext_resource type="Shader" path="res://engine/shaders/animated_texture.gdshader" id="2"]
+[ext_resource type="Texture2D" uid="uid://cccjyxok3ss1l" path="res://engine/objects/fluid/textures/lava.png" id="3"]
+[ext_resource type="Script" path="res://engine/objects/fluid/lava_area.gd" id="4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gf034"]
+shader = ExtResource("2")
+shader_parameter/frame_size = Vector2(1, 8)
+shader_parameter/frame_count = 8
+shader_parameter/frames_per_row = 1
+shader_parameter/time_scale = 6.0
+shader_parameter/frame_offset = 0
+shader_parameter/sprite_sheet = ExtResource("3")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mubo6"]
+noise_type = 5
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sjij6"]
+width = 32
+height = 32
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_mubo6")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_08xmy"]
+size = Vector2(1, 1)
+
+[node name="Lava" type="VBoxContainer"]
+offset_right = 32.0
+offset_bottom = 32.0
+theme_override_constants/separation = 0
+script = ExtResource("1")
+border_color = Color(0, 0, 1, 0)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = 31
+material = SubResource("ShaderMaterial_gf034")
+layout_mode = 2
+size_flags_vertical = 0
+texture = SubResource("NoiseTexture2D_sjij6")
+stretch_mode = 1
+
+[node name="Area2D" type="Area2D" parent="." groups=["#water"]]
+visible = false
+z_index = 1
+collision_layer = 128
+collision_mask = 7
+script = ExtResource("4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_08xmy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 31
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.4705879986286163, 0, 0, 1)

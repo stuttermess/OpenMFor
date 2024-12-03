@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=4]
+
+[ext_resource type="Texture2D" uid="uid://ch8ssg3dwn01u" path="res://engine/objects/effects/starfall/textures/star_effect.png" id="1"]
+[ext_resource type="Script" path="res://engine/objects/effects/starfall/starfall_effect.gd" id="2"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1")
+script = ExtResource("2")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(-16, -16, 32, 32)
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="queue_free"]

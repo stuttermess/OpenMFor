@@ -1,0 +1,219 @@
+[gd_scene load_steps=25 format=4]
+
+[ext_resource type="Script" path="res://stages/extra/minix/maps/minix_map.gd" id="1"]
+[ext_resource type="AudioStream" uid="uid://dv8xr5tqaj806" path="res://music/minix/custom/fz64options.ogg" id="2"]
+[ext_resource type="PackedScene" uid="uid://d3srfe2r6fg2u" path="res://engine/objects/core/music_loader/music_loader.tscn" id="3"]
+[ext_resource type="Script" path="res://objects/music_loader_custom/music_loader_custom.gd" id="4"]
+[ext_resource type="AudioStream" uid="uid://c7matagtmeja5" path="res://music/complete_tweaked.ogg" id="5"]
+[ext_resource type="AudioStream" uid="uid://d0kre6snqyd2l" path="res://music/minix/custom/K3-Number_13.ogg" id="6"]
+[ext_resource type="AudioStream" uid="uid://cksd15wg5lacq" path="res://music/minix/custom/mlpit_training1.ogg" id="7"]
+[ext_resource type="AudioStream" uid="uid://b5y8cninwllg8" path="res://music/minix/custom/Kirby_-_RockStar3.ogg" id="8"]
+[ext_resource type="AudioStream" uid="uid://b4xt2jxbtq6x" path="res://music/minix/custom/MIDI_208.ogg" id="9"]
+[ext_resource type="Script" path="res://stages/extra/minix/scripts/minix_coin_pipe.gd" id="10"]
+[ext_resource type="Texture2D" uid="uid://bviqja31upt4m" path="res://engine/tilesets/overworld/green_pipe.png" id="11"]
+[ext_resource type="TileSet" uid="uid://dtvs1rult8kbe" path="res://tilesets/overworld_green/overworld_green.tres" id="12"]
+[ext_resource type="Texture2D" uid="uid://b5qvo4xgdxnrv" path="res://objects/wide_clouds_moving/texture.png" id="13"]
+[ext_resource type="Script" path="res://objects/wide_clouds_moving/wide_clouds_moving.gd" id="14"]
+[ext_resource type="Texture2D" uid="uid://dboyy56p5qal4" path="res://objects/wide_clouds_moving/texture_alpha.png" id="15"]
+[ext_resource type="Script" path="res://engine/scripts/nodes/effects/quality_visible.gd" id="16"]
+[ext_resource type="Texture2D" uid="uid://6bwpp568bmq0" path="res://gfx/fancy_graphics/giant_clouds.png" id="17"]
+[ext_resource type="Texture2D" uid="uid://bnb5am431a3u8" path="res://engine/tilesets/overworld/woods.png" id="18"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b21kp"]
+atlas = ExtResource("11")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwepu"]
+atlas = ExtResource("11")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="Gradient" id="Gradient_pey5g"]
+colors = PackedColorArray(0.2313729971647263, 0.482353001832962, 0.6392160058021545, 1, 0.9490200281143188, 0.992156982421875, 0.9882349967956543, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fj0ev"]
+gradient = SubResource("Gradient_pey5g")
+width = 480
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtfwb"]
+size = Vector2(32, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sqkxo"]
+size = Vector2(32, 80)
+
+[node name="three_islands" type="Node2D"]
+script = ExtResource("1")
+map_name = "three islands"
+game_over_music = ExtResource("2")
+metadata/_edit_lock_ = true
+
+[node name="MusicLoader" parent="." instance=ExtResource("3")]
+script = ExtResource("4")
+tweaked_completion_music = ExtResource("5")
+ignore_fade_in_tweak = false
+music_var_1 = []
+music_var_2 = []
+music_var_3 = []
+var_1_volume_db = [0.0]
+var_1_start_from_sec = [0.0]
+var_2_volume_db = [0.0]
+var_2_start_from_sec = [0.0]
+var_3_volume_db = [0.0]
+var_3_start_from_sec = [0.0]
+boss_music_var_1 = null
+boss_music_var_2 = null
+boss_music_var_3 = null
+boss_music_volume_db = [0.0]
+boss_music_start_from_sec = [0.0]
+music = [ExtResource("6"), ExtResource("7"), ExtResource("8"), ExtResource("9")]
+play_immediately = false
+stop_all_music_on_start = false
+volume_db = [0.0, -4.0, -6.0, -5.0]
+start_from_sec = [1.45, 0.0, 1.5, 0.55]
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="Timer" type="Timer" parent="Timers"]
+wait_time = 2.0
+
+[node name="CoinTimer" type="Timer" parent="Timers"]
+
+[node name="Timer2" type="Timer" parent="Timers"]
+wait_time = 5.0
+one_shot = true
+
+[node name="EnemySpawners" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Marker2D5" type="Marker2D" parent="EnemySpawners"]
+position = Vector2(144, -12)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawners"]
+position = Vector2(288, -12)
+
+[node name="Marker2D3" type="Marker2D" parent="EnemySpawners"]
+position = Vector2(352, -12)
+
+[node name="Marker2D4" type="Marker2D" parent="EnemySpawners"]
+position = Vector2(496, -12)
+
+[node name="CoinPipe" type="Node2D" parent="."]
+z_index = 1
+position = Vector2(560, 528)
+script = ExtResource("10")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="CoinPipe"]
+position = Vector2(0, 16)
+texture = SubResource("AtlasTexture_b21kp")
+
+[node name="Sprite2D3" type="Sprite2D" parent="CoinPipe"]
+position = Vector2(0, 64)
+texture = SubResource("AtlasTexture_pwepu")
+
+[node name="PipeTimer" type="Timer" parent="CoinPipe"]
+wait_time = 20.0
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("12")
+format = 2
+layer_0/tile_data = PackedInt32Array(851970, 65536, 0, 983059, 131072, 2, 917523, 131072, 1, 851987, 131072, 0, 983058, 65536, 2, 917522, 65536, 1, 851986, 65536, 0, 983057, 65536, 2, 917521, 65536, 1, 851985, 65536, 0, 983056, 65536, 2, 917520, 65536, 1, 851984, 65536, 0, 983055, 65536, 2, 917519, 65536, 1, 851983, 65536, 0, 983054, 65536, 2, 917518, 65536, 1, 851982, 65536, 0, 983053, 65536, 2, 917517, 65536, 1, 851981, 65536, 0, 983052, 65536, 2, 917516, 65536, 1, 851980, 65536, 0, 983051, 65536, 2, 917515, 65536, 1, 851979, 65536, 0, 983050, 65536, 2, 917514, 65536, 1, 851978, 65536, 0, 983049, 65536, 2, 917513, 65536, 1, 851977, 65536, 0, 983048, 65536, 2, 917512, 65536, 1, 851976, 65536, 0, 983047, 65536, 2, 917511, 65536, 1, 851975, 65536, 0, 983046, 65536, 2, 917510, 65536, 1, 851974, 65536, 0, 983045, 65536, 2, 917509, 65536, 1, 851973, 65536, 0, 917508, 65536, 1, 851972, 65536, 0, 983043, 65536, 2, 851971, 65536, 0, 983042, 65536, 2, 917506, 65536, 1, 983041, 65536, 2, 917505, 65536, 1, 851969, 65536, 0, 786450, 2, 65536, 786433, 2, 327680, 786447, 2, 327680, 786436, 2, 196608, 917507, 65536, 1, 393227, 2, 131072, 786444, 2, 196608, 851968, 0, 0, 917504, 0, 1, 983040, 0, 2, 524290, 2, 131072, 983044, 65536, 2, 786438, 2, 458752, 786439, 2, 458752, 786440, 2, 458752, 327698, 2, 131072, 196610, 2, 327680, 196624, 2, 327680, 262146, 0, 3, 262147, 65536, 3, 262148, 131072, 3, 262159, 0, 3, 262160, 65536, 3, 262161, 131072, 3)
+layer_1/name = "Layer1"
+layer_1/tile_data = PackedInt32Array(786443, 2, 262144)
+metadata/_edit_lock_ = true
+
+[node name="TileMap2" type="TileMap" parent="."]
+position = Vector2(16, 0)
+tile_set = ExtResource("12")
+format = 2
+layer_0/tile_data = PackedInt32Array(65549, 2, 131072, 262152, 0, 3, 262153, 65536, 3, 262154, 131072, 3, 65540, 2, 131072, 786434, 2, 65536, 196617, 2, 196608)
+
+[node name="MarioPos" type="Marker2D" parent="."]
+position = Vector2(336, 400)
+
+[node name="ParallaxBackground" type="Node2D" parent="."]
+position = Vector2(0, -64)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
+z_index = -999
+position = Vector2(643, 64)
+rotation = 1.570799946784973
+scale = Vector2(1, 646)
+texture = SubResource("GradientTexture1D_fj0ev")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground"]
+z_index = -99
+texture_repeat = 2
+position = Vector2(320, 64)
+texture = ExtResource("13")
+region_enabled = true
+region_rect = Rect2(0, 0, 784, 64)
+script = ExtResource("14")
+speed = -80.0
+
+[node name="TextureAlpha" type="Sprite2D" parent="ParallaxBackground/Sprite2D4"]
+position = Vector2(0, 32)
+texture = ExtResource("15")
+region_enabled = true
+region_rect = Rect2(0, 0, 784, 32)
+script = ExtResource("16")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground"]
+z_index = -98
+texture_repeat = 2
+position = Vector2(320, 48)
+texture = ExtResource("13")
+region_enabled = true
+region_rect = Rect2(0, 0, 784, 64)
+script = ExtResource("14")
+speed = -120.0
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("16")
+
+[node name="GiantClouds" type="Sprite2D" parent="Node2D"]
+z_index = -100
+position = Vector2(-384, 0)
+texture = ExtResource("17")
+centered = false
+
+[node name="Enemy&MarioBlocker" type="StaticBody2D" parent="."]
+collision_layer = 112
+collision_mask = 0
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy&MarioBlocker"]
+position = Vector2(-16, 44)
+shape = SubResource("RectangleShape2D_qtfwb")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Enemy&MarioBlocker"]
+position = Vector2(656, 44)
+shape = SubResource("RectangleShape2D_qtfwb")
+
+[node name="MarioBlocker" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MarioBlocker"]
+position = Vector2(-16, 408)
+shape = SubResource("RectangleShape2D_sqkxo")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="MarioBlocker"]
+position = Vector2(656, 408)
+shape = SubResource("RectangleShape2D_sqkxo")
+
+[node name="Woods" type="Sprite2D" parent="."]
+position = Vector2(112, 470)
+texture = ExtResource("18")
+
+[node name="Woods3" type="Sprite2D" parent="."]
+position = Vector2(352, 496)
+texture = ExtResource("18")
+
+[node name="Woods2" type="Sprite2D" parent="."]
+position = Vector2(656, 480)
+texture = ExtResource("18")

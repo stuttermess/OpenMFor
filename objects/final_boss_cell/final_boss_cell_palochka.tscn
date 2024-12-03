@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=4]
+
+[ext_resource type="Script" path="res://objects/final_boss_cell/final_boss_cell_palochka.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://c0ox0dll2brq1" path="res://objects/final_boss_cell/textures/cell_palochka.png" id="2"]
+
+[node name="FinalBossCellPalochka" type="CharacterBody2D"]
+z_index = 10
+script = ExtResource("1")
+sprite = NodePath("Sprite2D")
+gravity_scale = 0.3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2")

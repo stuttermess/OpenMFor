@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=4]
+
+[ext_resource type="PackedScene" uid="uid://yreeufpqjft1" path="res://engine/objects/bosses/bowser/projectile/flame.tscn" id="1"]
+
+[node name="Flame" instance=ExtResource("1")]
+speed = Vector2(300, 0)

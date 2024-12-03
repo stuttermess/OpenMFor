@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=4]
+
+[ext_resource type="Script" path="res://engine/objects/projectiles/spikeball/spikeball.gd" id="1"]
+[ext_resource type="Script" path="res://engine/objects/projectiles/projectile_attack.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://b04hhpa4nt46" path="res://engine/objects/projectiles/spikeball/spikeball.png" id="3"]
+[ext_resource type="Script" path="res://engine/objects/enemies/enemy_sprite_rotator.gd" id="4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5oa0m"]
+radius = 12.0
+
+[node name="Spikeball" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1")
+sprite = NodePath("Sprite")
+gravity_scale = 0.1
+collision = false
+
+[node name="Attack" type="ShapeCast2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_5oa0m")
+target_position = Vector2(0, 0)
+max_results = 8
+collision_mask = 3
+collide_with_areas = true
+script = ExtResource("2")
+killer_type = &"hammer"
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("3")
+script = ExtResource("4")
+rotation_speed = 1200.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+modulate = Color(1, 1, 1, 0.01960779912769794)
+position = Vector2(-5.722049991163658e-06, -5.722049991163658e-06)
+rect = Rect2(-32, -32, 64, 512)
+
+[node name="Trail" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.06
+autostart = true
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="queue_free"]
+[connection signal="timeout" from="Trail" to="." method="_on_trail"]

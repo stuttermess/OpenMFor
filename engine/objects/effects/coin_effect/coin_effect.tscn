@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=4]
+
+[ext_resource type="SpriteFrames" uid="uid://byuuhqffg5rnd" path="res://engine/objects/effects/coin_effect/coin_effect.tres" id="1"]
+[ext_resource type="Script" path="res://engine/objects/effects/coin_effect/coin_effect.gd" id="2"]
+
+[node name="CoinEffect" type="AnimatedSprite2D"]
+position = Vector2(2.38419005427204e-07, 0)
+scale = Vector2(0.8648650050163269, 1)
+sprite_frames = ExtResource("1")
+autoplay = "default"
+script = ExtResource("2")

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=4]
+
+[ext_resource type="PackedScene" uid="uid://ddldd020oordq" path="res://engine/objects/platform/platform_path_small.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://djwe62jh83kf" path="res://engine/tilesets/overworld/hard_block.png" id="2"]
+
+[node name="PlatformPathHard" instance=ExtResource("1")]
+
+[node name="CollisionPolygon2D" parent="Block" index="0"]
+one_way_collision = false
+
+[node name="Sprite2D" parent="Block" index="2"]
+position = Vector2(0, 16)
+texture = ExtResource("2")
+region_rect = Rect2(0, 0, 32, 32)

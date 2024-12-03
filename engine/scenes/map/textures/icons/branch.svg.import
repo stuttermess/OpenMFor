@@ -1,0 +1,18 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://b5g86a2r4pimj"
+path="res://.godot/imported/branch.svg-c796da6c33e701f6dbd94cc19bc00df3.ctex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://engine/scenes/map/textures/icons/branch.svg"
+dest_files=["res://.godot/imported/branch.svg-c796da6c33e701f6dbd94cc19bc00df3.ctex"]
+
+[params]
+
+dummy_value_ignore_me=0

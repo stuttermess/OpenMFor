@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=4]
+
+[ext_resource type="Script" path="res://engine/objects/platform/donut_lift.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cn666uavphid1" path="res://engine/objects/platform/donut_lift.png" id="2"]
+[ext_resource type="Script" path="res://engine/scripts/nodes/vision/vision.gd" id="3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bkmyh"]
+size = Vector2(32, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p634n"]
+atlas = ExtResource("2")
+region = Rect2(0, 0, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxcay"]
+atlas = ExtResource("2")
+region = Rect2(32, 0, 32, 31)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0r811"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p634n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxcay")
+}],
+"loop": true,
+"name": &"trigger",
+"speed": 5.0
+}]
+
+[node name="DonutLift" type="AnimatableBody2D"]
+collision_layer = 112
+script = ExtResource("1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_bkmyh")
+one_way_collision = true
+one_way_collision_margin = 4.0
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0r811")
+autoplay = "default"
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+script = ExtResource("3")
+new_rect = Rect2(-128, -512, 256, 768)
+metadata/_edit_lock_ = true

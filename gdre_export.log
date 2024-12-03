@@ -1,0 +1,110 @@
+GDRE Tools v0.8.0
+Windows 10.0.22631, Radeon RX 580 Series, opengl3
+Extracted 4701 files, no errors detected!
+WARNING: Converting lossy imports, you may lose fidelity for indicated assets when re-importing upon loading the project
+   at: ImportExporter::_export_imports (modules\gdsdecomp\utility\import_exporter.cpp:181)
+Script version 4.3.0-stable (rev 0x77af6ca) detected
+Recreating plugin configs...
+Exporting resources in parallel...
+WARNING: Conversion for Resource of type Resource and format xm not implemented
+   at: ImportExporter::report_unsupported_resource (modules\gdsdecomp\utility\import_exporter.cpp:756)
+WARNING: Conversion for Resource of type FontFile and format fnt not implemented
+   at: ImportExporter::report_unsupported_resource (modules\gdsdecomp\utility\import_exporter.cpp:756)
+WARNING: Conversion for Resource of type Resource and format mod not implemented
+   at: ImportExporter::report_unsupported_resource (modules\gdsdecomp\utility\import_exporter.cpp:756)
+WARNING: Conversion for Resource of type Resource and format it not implemented
+   at: ImportExporter::report_unsupported_resource (modules\gdsdecomp\utility\import_exporter.cpp:756)
+Saved project config project.godot.
+
+
+********************************EXPORT REPORT********************************
+
+Totals:                                 
+Decompiled scripts:                     558
+Failed scripts:                         0
+Imported resources for export session:  1782
+Successfully converted:                 1749
+Lossy:                                  0
+Rewrote metadata:                       1152
+Non-importable conversions:             11
+Not converted:                          33
+Failed conversions:                     0
+-------------
+
+------
+
+The following files were converted and saved to a non-original path, but did not have their import data rewritten.
+These files will not be re-imported when loading the project.
+res://.godot/imported/pipe_in.svg-c868e4bb1406fd60de19ae3b0f3f6451.ctex to res://.assets/engine/objects/warps/icons/pipe_in.png
+res://.godot/imported/pipe_out.svg-87eee3fc39b80c567570caf4b5a5633f.ctex to res://.assets/engine/objects/warps/icons/pipe_out.png
+res://.godot/imported/pipe_save.svg-48405971d7859ab651673243399dbafc.ctex to res://.assets/engine/objects/warps/icons/pipe_save.png
+res://.godot/imported/branch.svg-c796da6c33e701f6dbd94cc19bc00df3.ctex to res://.assets/engine/scenes/map/textures/icons/branch.png
+res://.godot/imported/branch_space.svg-9cabdca93ba935ea0dad5c305749aa77.ctex to res://.assets/engine/scenes/map/textures/icons/branch_space.png
+res://.godot/imported/marker.svg-b15c7add1eee5f40ecc71aab59380cf9.ctex to res://.assets/engine/scenes/map/textures/icons/marker.png
+res://.godot/imported/icon.svg-3c5289b0b9e848ce9c77c7f7a277943c.ctex to res://.assets/engine/scripts/classes/level/icon.png
+res://.godot/imported/node_modifier.svg-20f1d0b105afb1906c4b84e22b424bb4.ctex to res://.assets/engine/scripts/classes/node_modifier/node_modifier.png
+res://.godot/imported/gravity_body_2d.svg-61b7b039274f9ee4b94c09fcc2436e62.ctex to res://.assets/engine/scripts/classes/physics/gravity_body_2d/gravity_body_2d.png
+res://.godot/imported/icon.svg-2368a331d1ee8d19961e5ab4db191fff.ctex to res://.assets/engine/scripts/classes/stage2d/icon.png
+res://.godot/imported/Add.svg-fc88269d957a9188f4cf87c33812d8b7.ctex to res://.assets/stages/main_menu/objects/character_editor/Add.png
+------
+
+The following files were not converted because support has not been implemented yet:
+res://.godot/imported/4mat_-_broken_heart.xm-1a14f701c4aa58d0d807da03eb343bdc.res to res://engine/components/game_over/music/4mat_-_broken_heart.xm
+res://.godot/imported/hud_font.fnt-dd4daaf9f4c3e5419a6957f996f4e3bc.fontdata to res://engine/components/hud/hud_font.fnt
+res://.godot/imported/life.fnt-222376c32956debdb9f0664302d73094.fontdata to res://engine/components/score/fonts/life.fnt
+res://.godot/imported/score.fnt-18d98f37efe687672218526ad6396e69.fontdata to res://engine/components/score/fonts/score.fnt
+res://.godot/imported/music_bowser_battle.mod-d7268dde39702d9835a93c8042424fe1.res to res://engine/objects/bosses/bowser/music/music_bowser_battle.mod
+res://.godot/imported/music-starman.it-fd167da50ee4c5ffa1593159f4276a7d.res to res://engine/objects/powerups/super_star/music-starman.it
+res://.godot/imported/credits.mod-f897ada28929042f57e454ddaed13609.res to res://engine/scenes/credits/music/credits.mod
+res://.godot/imported/main_menu.xm-ec86f2c723a6e84ca1ba3f4b64bdec01.res to res://engine/scenes/main_menu/music/main_menu.xm
+res://.godot/imported/riot-11.mod-9289dc6e32ce96f3fee0d75f62d9e5f3.res to res://engine/scenes/map/music/riot-11.mod
+res://.godot/imported/save_game_room.it-c2fe329e8f875f027dfe26219b765566.res to res://engine/scenes/save_game_room/music/save_game_room.it
+res://.godot/imported/apoplexy.mod-1552d87d0e6a19d616ec1ef4917cbd5b.res to res://music/apoplexy.mod
+res://.godot/imported/ending_part_1.it-302df293df735dbe999f328e09f012dc.res to res://music/cutscene/ending_part_1.it
+res://.godot/imported/-+syndrome_land+-.mod-527c09ca6db7c80549cf605cdd70e8bb.res to res://music/extra/-+syndrome_land+-.mod
+res://.godot/imported/dream_off_mco.mod-8297554c2f4d5d22f5c8f1f968c7b2ca.res to res://music/extra/dream_off_mco.mod
+res://.godot/imported/kav-humn.xm-7ef0748b9cf4cbf3ece26fde45e58988.res to res://music/extra/kav-humn.xm
+res://.godot/imported/rsectro.mod-6501247d6abd8f3b558316bf0071266a.res to res://music/extra/rsectro.mod
+res://.godot/imported/trop de voix!.mod-e687ce0256fa8a4f6374f8597273bb9d.res to res://music/extra/trop de voix!.mod
+res://.godot/imported/u_feel_it.mod-1ed4ac5e1e42eca1e95f18ca5714c7b4.res to res://music/extra/u_feel_it.mod
+res://.godot/imported/in_the_kitchen_loop.mod-b89ce711d9fa5193c6879d999f57a444.res to res://music/in_the_kitchen_loop.mod
+res://.godot/imported/interference.mod-e50656e50528b81b2d791de8a5709c02.res to res://music/interference.mod
+res://.godot/imported/map8.mod-f108dadbc21db0d495b4cfd5a84cd1c7.res to res://music/map8.mod
+res://.godot/imported/OBLITIRT.XM-d86fa469d7e45d348635522c70b8b0ef.res to res://music/minix/custom/OBLITIRT.XM
+res://.godot/imported/hemoroidal_darkness.mod-d416ed5b78e4db3ff33a794bd856e6ec.res to res://music/minix/custom/hemoroidal_darkness.mod
+res://.godot/imported/lotus2-title.mod-487aab04e7674b14d9262d4f9ee0156b.res to res://music/minix/custom/lotus2-title.mod
+res://.godot/imported/one_fine_day.xm-9a6ecc99b114676d9d3b4b685bc83f47.res to res://music/one_fine_day.xm
+res://.godot/imported/riot-11.mod-d26f74221f702802770386cf3c0fe6e0.res to res://music/riot-11.mod
+res://.godot/imported/sirens.mod-655641626e8e9d63938427166e18296f.res to res://music/sirens.mod
+res://.godot/imported/the_golden_ages.mod-d9dcd0bbba5466011cd7554591979f32.res to res://music/the_golden_ages.mod
+res://.godot/imported/the_holiday_anthem.xm-b5314d49a9b6c3c424ed519a650b4f96.res to res://music/the_holiday_anthem.xm
+res://.godot/imported/trancoi_unfinished.xm-a8c77f605188246d8e4cd6c08701abc5.res to res://music/trancoi_unfinished.xm
+res://.godot/imported/yet_another_bonus.mod-20ad9c3d9103eb525ca02959f8022fc4.res to res://music/yet_another_bonus.mod
+res://.godot/imported/ykyrococ.mod-1442dc8743b2667a29a8eb908ebb6b64.res to res://music/ykyrococ.mod
+res://.godot/imported/BasicInstinct.mod-8065240231e73c86652249cfe6bbdf5c.res to res://stages/extra/secrets/music/BasicInstinct.mod
+
+
+
+---------------------------------IMPORTANT NOTES----------------------------------
+
+
+Unsupported Resources Detected:
+The following resource types were detected in the project that conversion is not implemented for yet.
+See Export Report to see which resources were not exported.
+You will still be able to edit the project in the editor regardless.
+ - Resource Type: Resource, Format: xm
+ - Resource Type: FontFile, Format: fnt
+ - Resource Type: Resource, Format: mod
+ - Resource Type: Resource, Format: it
+
+
+
+------------------------------------------------------------------------------------
+
+Use Godot editor version 4.3.0 to edit the project.
+Note: the project may be using a custom version of Godot. Detection for this has not been implemented yet.
+If you find that you have many non-import errors upon opening the project 
+(i.e. scripts or shaders have many errors), use the original game's binary as the export template.
+
+*******************************************************************************
+

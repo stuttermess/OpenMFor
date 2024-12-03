@@ -1,0 +1,18 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://d2d2ds7lyhmh"
+path="res://.godot/imported/icon.svg-3c5289b0b9e848ce9c77c7f7a277943c.ctex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://engine/scripts/classes/level/icon.svg"
+dest_files=["res://.godot/imported/icon.svg-3c5289b0b9e848ce9c77c7f7a277943c.ctex"]
+
+[params]
+
+dummy_value_ignore_me=0

@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="PlayerSuit" load_steps=14 format=4]
+
+[ext_resource type="Script" path="res://engine/objects/players/behaviors/player_animation_behavior.gd" id="1"]
+[ext_resource type="SpriteFrames" uid="uid://b36it0nioiiri" path="res://engine/objects/players/prefabs/animations/luigi/animation_luigi_super.tres" id="2"]
+[ext_resource type="Resource" uid="uid://cirtkvdvviy47" path="res://engine/objects/players/prefabs/suits/luigi/suit_luigi_small.tres" id="3"]
+[ext_resource type="Script" path="res://engine/objects/players/behaviors/player_grab_behavior.gd" id="4"]
+[ext_resource type="AudioStream" uid="uid://crqd1768xhf58" path="res://engine/objects/players/prefabs/sounds/grab.wav" id="5"]
+[ext_resource type="AudioStream" uid="uid://be3uvqev2c1p6" path="res://engine/objects/players/prefabs/sounds/kick.wav" id="6"]
+[ext_resource type="Script" path="res://engine/objects/players/player_suit.gd" id="7"]
+[ext_resource type="Script" path="res://engine/objects/players/behaviors/player_physics_behavior.gd" id="8"]
+[ext_resource type="Resource" uid="uid://cwfwids6c36ou" path="res://engine/objects/players/prefabs/configs/config_luigi_default.tres" id="9"]
+[ext_resource type="Resource" uid="uid://dkb80m2mcmogy" path="res://engine/objects/players/prefabs/shapers/shaper_player_super.tres" id="10"]
+[ext_resource type="Resource" uid="uid://2etad878gceh" path="res://engine/objects/players/prefabs/shapers/shaper_player_small.tres" id="11"]
+[ext_resource type="AudioStream" uid="uid://cpy66lof7ycli" path="res://engine/objects/players/prefabs/sounds/music-die.ogg" id="12"]
+[ext_resource type="AudioStream" uid="uid://bhi5ssf0q30df" path="res://engine/objects/players/prefabs/sounds/pipe.wav" id="13"]
+
+[resource]
+script = ExtResource("7")
+name = &"super"
+type = 1
+gets_hurt_to = ExtResource("3")
+physics_config = ExtResource("9")
+physics_behavior = ExtResource("8")
+physics_crouchable = true
+physics_shaper = ExtResource("10")
+physics_shaper_crouch = ExtResource("11")
+animation_sprites = ExtResource("2")
+animation_behavior = ExtResource("1")
+animation_underwater_bubble_offset = Vector2(0, -20)
+behavior_resource = null
+behavior_script = null
+behavior_crouch_reflect_fireballs = false
+grab_behavior = ExtResource("4")
+grab_sound_grab = ExtResource("5")
+grab_sound_kick = ExtResource("6")
+extra_vars = {}
+extra_behavior = null
+sound_hurt = ExtResource("13")
+sound_death = ExtResource("12")
+sound_pitch = 1.0

@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="PlayerSuit" load_steps=21 format=3 uid="uid://d13cbeef3yd3w"]
+
+[ext_resource type="Script" path="res://engine/objects/players/behaviors/player_animation_behavior.gd" id="1"]
+[ext_resource type="SpriteFrames" uid="uid://by6h83q4tddht" path="res://engine/objects/players/prefabs/animations/luigi/animation_luigi_fireball.tres" id="2"]
+[ext_resource type="Script" path="res://engine/objects/players/behaviors/player_projectile_resource.gd" id="3"]
+[ext_resource type="PackedScene" path="res://engine/objects/projectiles/fireball/fireball.tscn" id="4"]
+[ext_resource type="Script" path="res://engine/scripts/resources/instance_node2d/instance_node2d.gd" id="5"]
+[ext_resource type="AudioStream" uid="uid://dtr88jdx4yuq4" path="res://engine/objects/projectiles/sounds/shoot.wav" id="6"]
+[ext_resource type="Script" path="res://engine/objects/players/behaviors/player_projectile.gd" id="7"]
+[ext_resource type="Resource" path="res://engine/objects/players/prefabs/suits/luigi/suit_luigi_super.tres" id="8"]
+[ext_resource type="Script" path="res://engine/objects/players/behaviors/player_grab_behavior.gd" id="9"]
+[ext_resource type="AudioStream" uid="uid://crqd1768xhf58" path="res://engine/objects/players/prefabs/sounds/grab.wav" id="10"]
+[ext_resource type="AudioStream" uid="uid://be3uvqev2c1p6" path="res://engine/objects/players/prefabs/sounds/kick.wav" id="11"]
+[ext_resource type="Script" path="res://engine/objects/players/player_suit.gd" id="12"]
+[ext_resource type="Script" path="res://engine/objects/players/behaviors/player_physics_behavior.gd" id="13"]
+[ext_resource type="Resource" path="res://engine/objects/players/prefabs/configs/config_luigi_default.tres" id="14"]
+[ext_resource type="Resource" uid="uid://wk1oxnfcbbe4" path="res://engine/objects/players/prefabs/shapers/shaper_player_super.tres" id="15"]
+[ext_resource type="Resource" uid="uid://bg0a7noylxte7" path="res://engine/objects/players/prefabs/shapers/shaper_player_small.tres" id="16"]
+[ext_resource type="AudioStream" uid="uid://cpy66lof7ycli" path="res://engine/objects/players/prefabs/sounds/music-die.ogg" id="17"]
+[ext_resource type="AudioStream" uid="uid://bhi5ssf0q30df" path="res://engine/objects/players/prefabs/sounds/pipe.wav" id="18"]
+
+[sub_resource type="Resource" id="Resource_yudqa"]
+script = ExtResource("5")
+creation_nodepack = ExtResource("4")
+trans_offset = Vector2(0, -20)
+trans_inheritances = 7
+trans_rotation = 0.0
+trans_scale = Vector2(1, 1)
+trans_skew = 0.0
+visi_z_index = 0
+visi_z_as_relative = true
+visi_y_sort_enabled = false
+custom_vars = {}
+
+[sub_resource type="Resource" id="Resource_w5vmj"]
+script = ExtResource("3")
+projectile = SubResource("Resource_yudqa")
+speed = Vector2(406.25, 0)
+amount = 2
+sound_attack = ExtResource("6")
+
+[resource]
+script = ExtResource("12")
+name = &"fireball"
+type = 2
+gets_hurt_to = ExtResource("8")
+physics_config = ExtResource("14")
+physics_behavior = ExtResource("13")
+physics_crouchable = true
+physics_shaper = ExtResource("15")
+physics_shaper_crouch = ExtResource("16")
+animation_sprites = ExtResource("2")
+animation_behavior = ExtResource("1")
+animation_underwater_bubble_offset = Vector2(0, -20)
+behavior_resource = SubResource("Resource_w5vmj")
+behavior_script = ExtResource("7")
+behavior_crouch_reflect_fireballs = false
+grab_behavior = ExtResource("9")
+grab_sound_grab = ExtResource("10")
+grab_sound_kick = ExtResource("11")
+extra_vars = {}
+extra_behavior = null
+sound_hurt = ExtResource("18")
+sound_death = ExtResource("17")
+sound_pitch = 1.0

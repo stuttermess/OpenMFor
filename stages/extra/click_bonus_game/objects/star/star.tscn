@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=4]
+
+[ext_resource type="Script" path="res://stages/extra/click_bonus_game/objects/star/star.gd" id="1"]
+[ext_resource type="AudioStream" uid="uid://dnj1q127f0ths" path="res://stages/extra/click_bonus_game/sfx/star_click1-.wav" id="2"]
+[ext_resource type="AudioStream" uid="uid://clbowyosvm7v3" path="res://stages/extra/click_bonus_game/sfx/star_click2-.wav" id="3"]
+[ext_resource type="AudioStream" uid="uid://cmjguuxihvat8" path="res://stages/extra/click_bonus_game/sfx/star_click3-.wav" id="4"]
+[ext_resource type="Texture2D" uid="uid://vdnmtnh6a3mn" path="res://stages/extra/click_bonus_game/textures/bonus_star.png" id="5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_06e56"]
+radius = 38.01319885253906
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mlmcu"]
+radius = 80.0
+
+[node name="Area2D" type="Area2D" groups=["bonus_star"]]
+script = ExtResource("1")
+sounds = [ExtResource("2"), ExtResource("3"), ExtResource("4")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_06e56")
+
+[node name="BonusStar" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.4196079969406128)
+texture = ExtResource("5")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_mlmcu")
+
+[connection signal="area_entered" from="Area2D" to="." method="ball_entered"]

@@ -1,0 +1,37 @@
+[gd_scene load_steps=9 format=4]
+
+[ext_resource type="Script" path="res://engine/components/ui/generic/menu_items_controller.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cf48rsepfm4jo" path="res://engine/scenes/main_menu/textures/start_text.png" id="2"]
+[ext_resource type="Script" path="res://engine/scenes/main_menu/scripts/start_selection.gd" id="3"]
+[ext_resource type="AudioStream" uid="uid://bi0m6xn5201en" path="res://engine/scenes/main_menu/sounds/lets.wav" id="4"]
+[ext_resource type="Texture2D" uid="uid://bloy5vfyv8okk" path="res://engine/scenes/main_menu/textures/options_text.png" id="5"]
+[ext_resource type="Script" path="res://engine/scenes/main_menu/scripts/option_selection.gd" id="6"]
+[ext_resource type="Texture2D" uid="uid://8yrsglnn48ca" path="res://engine/scenes/main_menu/textures/quit_text.png" id="7"]
+[ext_resource type="Script" path="res://engine/scenes/main_menu/scripts/quit_selection.gd" id="8"]
+
+[node name="MainMenuControls" type="VBoxContainer"]
+offset_right = 104.0
+offset_bottom = 76.0
+script = ExtResource("1")
+
+[node name="Start" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2")
+stretch_mode = 3
+script = ExtResource("3")
+selected_sound = ExtResource("4")
+
+[node name="Options" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("5")
+stretch_mode = 3
+script = ExtResource("6")
+
+[node name="Quit" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("7")
+stretch_mode = 3
+script = ExtResource("8")

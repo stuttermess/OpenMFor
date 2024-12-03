@@ -1,0 +1,340 @@
+[gd_scene load_steps=41 format=4]
+
+[ext_resource type="Script" path="res://stages/save_game_room/scripts/restore_tweaks_from_minix.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://bmgrwlwl4woll" path="res://stages/main_menu/objects/character_editor/character_editor.tscn" id="2"]
+[ext_resource type="Script" path="res://stages/main_menu/scripts/zoom_camera_transition.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://d3srfe2r6fg2u" path="res://engine/objects/core/music_loader/music_loader.tscn" id="4"]
+[ext_resource type="Script" path="res://objects/music_loader_custom/music_loader_custom.gd" id="5"]
+[ext_resource type="AudioStream" uid="uid://c7matagtmeja5" path="res://music/complete_tweaked.ogg" id="6"]
+[ext_resource type="Resource" uid="uid://ckvsfjusfv75o" path="res://engine/scenes/main_menu/music/main_menu.xm" id="7"]
+[ext_resource type="Script" path="res://engine/scripts/nodes/effects/quality_visible.gd" id="8"]
+[ext_resource type="Texture2D" uid="uid://6bwpp568bmq0" path="res://gfx/fancy_graphics/giant_clouds.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://bf146adiqluws" path="res://gfx/fancy_graphics/LOSTMAPAMIRITE_GLOW.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://jhpdb3iiytu8" path="res://gfx/fancy_graphics/pinwheel.png" id="11"]
+[ext_resource type="Script" path="res://gfx/fancy_graphics/scripts/map_star_bg.gd" id="12"]
+[ext_resource type="Texture2D" uid="uid://cnx56ynm8nycp" path="res://gfx/fancy_graphics/sparkle_small.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://byxu77r36vclg" path="res://gfx/fancy_graphics/sparkle_large.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://usm6n80msr7n" path="res://engine/scenes/map/textures/bg.png" id="15"]
+[ext_resource type="Texture2D" uid="uid://bipkecel2wgvv" path="res://stages/main_menu/textures/main_menu_bg.png" id="16"]
+[ext_resource type="Texture2D" uid="uid://d2gtbgikc6v77" path="res://stages/main_menu/textures/menuitemsbg.png" id="17"]
+[ext_resource type="Texture2D" uid="uid://drfwcu30e6oxc" path="res://stages/main_menu/textures/previews/preview-1.png" id="18"]
+[ext_resource type="Texture2D" uid="uid://up8hsngb2lcl" path="res://stages/main_menu/textures/previews/preview-2.png" id="19"]
+[ext_resource type="Texture2D" uid="uid://bab6yxovhw05p" path="res://stages/main_menu/textures/previews/preview-3.png" id="20"]
+[ext_resource type="Texture2D" uid="uid://c2n2cffea0e1t" path="res://stages/main_menu/textures/previews/preview-4.png" id="21"]
+[ext_resource type="Texture2D" uid="uid://bg7ig1d27vebf" path="res://stages/main_menu/textures/previews/preview-5.png" id="22"]
+[ext_resource type="Texture2D" uid="uid://bmxjt4y3pjtmy" path="res://stages/main_menu/textures/previews/preview-6.png" id="23"]
+[ext_resource type="Script" path="res://stages/main_menu/scripts/previews.gd" id="24"]
+[ext_resource type="Texture2D" uid="uid://c8se8kv5eegh6" path="res://stages/main_menu/textures/menu_mushrooms.png" id="25"]
+[ext_resource type="PackedScene" uid="uid://ujpnlfhdsb7j" path="res://stages/main_menu/objects/main_menu_controls.tscn" id="26"]
+[ext_resource type="Script" path="res://engine/scenes/main_menu/scripts/selector_blinking.gd" id="27"]
+[ext_resource type="Texture2D" uid="uid://dif28i3dedumq" path="res://stages/main_menu/textures/mfcommunityedition.png" id="28"]
+[ext_resource type="Texture2D" uid="uid://dvhgmrlr7mwt" path="res://stages/main_menu/textures/mfcommunityedition_new.png" id="29"]
+[ext_resource type="Script" path="res://engine/components/ui/generic/menu_selector.gd" id="30"]
+[ext_resource type="SpriteFrames" uid="uid://br3qktscdu8fx" path="res://engine/objects/players/prefabs/animations/mario/selector.tres" id="31"]
+[ext_resource type="Script" path="res://engine/components/ui/generic/selector_player_animation.gd" id="32"]
+[ext_resource type="FontFile" uid="uid://bgsavu6joui2r" path="res://engine/fonts/junebug.ttf" id="33"]
+[ext_resource type="Script" path="res://stages/main_menu/scripts/update_checker.gd" id="34"]
+[ext_resource type="PackedScene" uid="uid://1jfyfq3ty6g1" path="res://engine/scenes/main_menu/settings.tscn" id="35"]
+[ext_resource type="PackedScene" uid="uid://cpme7ixwwuc2p" path="res://engine/scenes/main_menu/controls.tscn" id="36"]
+[ext_resource type="PackedScene" uid="uid://c2mch7wqmlcgp" path="res://stages/main_menu/objects/tweaks.tscn" id="37"]
+
+[sub_resource type="Gradient" id="Gradient_slprf"]
+colors = PackedColorArray(0.2313729971647263, 0.482353001832962, 0.6392160058021545, 1, 0.9490200281143188, 0.992156982421875, 0.9882349967956543, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bxy1n"]
+gradient = SubResource("Gradient_slprf")
+width = 480
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h67v5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MainMenu" type="Control"]
+physics_interpolation_mode = 0
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="RestoreTweaksFromMinix" type="Node" parent="."]
+script = ExtResource("1")
+
+[node name="Window" type="Window" parent="."]
+disable_3d = true
+title = "Character Editor"
+initial_position = 2
+size = Vector2i(400, 300)
+visible = false
+min_size = Vector2i(250, 175)
+
+[node name="CharacterEditor" parent="Window" instance=ExtResource("2")]
+
+[node name="Camera" type="Camera2D" parent="."]
+offset = Vector2(320, 240)
+position_smoothing_speed = 20.0
+script = ExtResource("3")
+
+[node name="Menu" type="Control" parent="."]
+physics_interpolation_mode = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MusicLoader" parent="Menu" instance=ExtResource("4")]
+script = ExtResource("5")
+tweaked_completion_music = ExtResource("6")
+ignore_fade_in_tweak = false
+music_var_1 = []
+music_var_2 = []
+music_var_3 = []
+var_1_volume_db = [0.0]
+var_1_start_from_sec = [0.0]
+var_2_volume_db = [0.0]
+var_2_start_from_sec = [0.0]
+var_3_volume_db = [0.0]
+var_3_start_from_sec = [0.0]
+boss_music_var_1 = null
+boss_music_var_2 = null
+boss_music_var_3 = null
+boss_music_volume_db = [0.0]
+boss_music_start_from_sec = [0.0]
+music = [ExtResource("7")]
+channel_id = 0
+play_immediately = false
+
+[node name="Node2D" type="Node2D" parent="Menu"]
+script = ExtResource("8")
+
+[node name="Sprite2D" type="Sprite2D" parent="Menu/Node2D"]
+position = Vector2(640, 0)
+rotation = 1.570799946784973
+scale = Vector2(1, 640)
+texture = SubResource("GradientTexture1D_bxy1n")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="GiantCloud" type="Sprite2D" parent="Menu/Node2D"]
+position = Vector2(272, 244)
+texture = ExtResource("9")
+
+[node name="Lostmapamirite" type="Sprite2D" parent="Menu/Node2D"]
+position = Vector2(320, 159)
+texture = ExtResource("10")
+
+[node name="Pinwheel" type="Sprite2D" parent="Menu/Node2D"]
+position = Vector2(320, 176)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("11")
+script = ExtResource("12")
+
+[node name="SparkleSmall2" type="Sprite2D" parent="Menu/Node2D"]
+z_index = 1
+position = Vector2(416, 64)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("13")
+
+[node name="SparkleSmall7" type="Sprite2D" parent="Menu/Node2D"]
+z_index = 1
+position = Vector2(437, 80)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13")
+
+[node name="SparkleSmall3" type="Sprite2D" parent="Menu/Node2D"]
+z_index = 1
+position = Vector2(460, 93)
+texture = ExtResource("13")
+
+[node name="SparkleSmall4" type="Sprite2D" parent="Menu/Node2D"]
+z_index = 1
+position = Vector2(340, 95)
+texture = ExtResource("13")
+
+[node name="SparkleSmall5" type="Sprite2D" parent="Menu/Node2D"]
+z_index = 1
+position = Vector2(227, 173)
+texture = ExtResource("13")
+
+[node name="SparkleSmall6" type="Sprite2D" parent="Menu/Node2D"]
+z_index = 1
+position = Vector2(457, 204)
+texture = ExtResource("13")
+
+[node name="SparkleLarge" type="Sprite2D" parent="Menu/Node2D"]
+z_index = 1
+position = Vector2(144, 86)
+scale = Vector2(0.2000000029802322, 0.2000000029802322)
+texture = ExtResource("14")
+
+[node name="Node2D2" type="Node2D" parent="Menu"]
+visible = false
+script = ExtResource("8")
+maximum = false
+medium = true
+minimum = true
+
+[node name="Bg" type="Sprite2D" parent="Menu/Node2D2"]
+position = Vector2(320, 240)
+texture = ExtResource("15")
+region_enabled = true
+region_rect = Rect2(240, 0, 640, 480)
+
+[node name="Sprite2D" type="Sprite2D" parent="Menu"]
+position = Vector2(320, 240)
+texture = ExtResource("16")
+
+[node name="Menuitemsbg" type="Sprite2D" parent="Menu"]
+modulate = Color(1, 1, 1, 0.7450979948043823)
+position = Vector2(320.5, 384)
+scale = Vector2(0.8622050285339355, 1)
+texture = ExtResource("17")
+
+[node name="Previews" type="AnimatedSprite2D" parent="Menu"]
+position = Vector2(105, 315)
+scale = Vector2(0.800000011920929, 0.800000011920929)
+sprite_frames = SubResource("SpriteFrames_h67v5")
+script = ExtResource("24")
+
+[node name="MenuMushrooms" type="Sprite2D" parent="Menu"]
+position = Vector2(570, 257)
+texture = ExtResource("25")
+script = ExtResource("8")
+
+[node name="MainMenuControls" parent="Menu" instance=ExtResource("26")]
+layout_mode = 0
+offset_left = 237.0
+offset_top = 304.0
+offset_right = 402.0
+offset_bottom = 480.0
+theme_override_constants/separation = 1
+focused = false
+
+[node name="Node" type="Node" parent="Menu"]
+script = ExtResource("27")
+menu_items_controller_path = NodePath("../MainMenuControls")
+
+[node name="Mfcommunityedition" type="Sprite2D" parent="Menu"]
+visible = false
+position = Vector2(334, 147)
+scale = Vector2(0.8999999761581421, 0.8999999761581421)
+texture = ExtResource("28")
+script = ExtResource("8")
+maximum = false
+medium = true
+minimum = true
+
+[node name="MfcommunityeditionNew" type="Sprite2D" parent="Menu"]
+position = Vector2(319.5379943847656, 155.25)
+scale = Vector2(0.7764899730682373, 0.7764899730682373)
+texture = ExtResource("29")
+script = ExtResource("8")
+metadata/_edit_lock_ = true
+
+[node name="Selector" type="Node2D" parent="Menu"]
+script = ExtResource("30")
+smooth_speed = 0.4
+position_padding = 20
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Menu/Selector"]
+sprite_frames = ExtResource("31")
+script = ExtResource("32")
+
+[node name="UpdateFound" type="Label" parent="Menu"]
+visible = false
+layout_mode = 0
+offset_top = 381.0
+offset_right = 219.0
+offset_bottom = 469.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4352940022945404)
+theme_override_colors/font_outline_color = Color(0, 0, 0.3294120132923126, 1)
+theme_override_constants/line_spacing = 4
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("33")
+theme_override_font_sizes/font_size = 13
+text = "new update found!
+press space to
+open in browser
+"
+horizontal_alignment = 1
+vertical_alignment = 2
+uppercase = true
+
+[node name="UpdateChecker" type="Node" parent="Menu"]
+script = ExtResource("34")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="Menu"]
+timeout = 8.0
+
+[node name="Settings" parent="." instance=ExtResource("35")]
+physics_interpolation_mode = 0
+layout_mode = 1
+main_menu_controls = "Menu/MainMenuControls"
+
+[node name="Controls" parent="." instance=ExtResource("36")]
+physics_interpolation_mode = 0
+layout_mode = 1
+mouse_filter = 2
+
+[node name="Tweaks" parent="." instance=ExtResource("37")]
+physics_interpolation_mode = 0
+layout_mode = 1
+offset_left = -640.0
+offset_top = 480.0
+offset_right = -640.0
+offset_bottom = 480.0
+metadata/_edit_lock_ = true
+
+[node name="Version" type="Label" parent="."]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 384.0
+offset_right = 632.0
+offset_bottom = 472.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4352940022945404)
+theme_override_colors/font_outline_color = Color(0, 0, 0.3294120132923126, 1)
+theme_override_constants/line_spacing = 4
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("33")
+theme_override_font_sizes/font_size = 12
+text = "version 1.0"
+horizontal_alignment = 2
+vertical_alignment = 2
+uppercase = true
+
+[connection signal="close_requested" from="Window" to="Window" method="hide"]
+[connection signal="mouse_entered" from="Window" to="Window/CharacterEditor" method="_on_window_mouse_entered"]
+[connection signal="visibility_changed" from="Window" to="Window/CharacterEditor" method="_on_window_visibility_changed"]
+[connection signal="selected" from="Menu/MainMenuControls" to="Menu/Node" method="handle_selection"]
+[connection signal="selected" from="Menu/MainMenuControls" to="Menu/Selector" method="handle_selection"]

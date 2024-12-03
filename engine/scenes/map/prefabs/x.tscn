@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=4]
+
+[ext_resource type="Texture2D" uid="uid://co2aqkfsljcf1" path="res://engine/scenes/map/textures/x.png" id="1"]
+[ext_resource type="Script" path="res://engine/scenes/map/scripts/map_x_marker.gd" id="2"]
+
+[node name="X" type="Sprite2D"]
+texture = ExtResource("1")
+script = ExtResource("2")

@@ -1,0 +1,396 @@
+[gd_scene load_steps=36 format=4]
+
+[ext_resource type="Script" path="res://stages/extra/click_bonus_game/scripts/bonus_level.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://d3srfe2r6fg2u" path="res://engine/objects/core/music_loader/music_loader.tscn" id="2"]
+[ext_resource type="Resource" uid="uid://biwuot8qud6ob" path="res://music/extra/u_feel_it.mod" id="3"]
+[ext_resource type="Script" path="res://objects/player_camera_custom/player_camera_custom.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://s4fip2enup6u" path="res://stages/extra/click_bonus_game/objects/heads_up_display.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://dscgi7k51j58n" path="res://stages/extra/click_bonus_game/objects/star/star.tscn" id="6"]
+[ext_resource type="Script" path="res://stages/extra/click_bonus_game/scripts/star_path_follow.gd" id="7"]
+[ext_resource type="Script" path="res://stages/extra/click_bonus_game/scripts/star_sine_movement.gd" id="8"]
+[ext_resource type="Texture2D" uid="uid://b5477r418vvmg" path="res://tilesets/skyland/gfx/big_clouds.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://mxicaln3cacf" path="res://stages/extra/click_bonus_game/textures/fancy_bg.png" id="10"]
+[ext_resource type="Script" path="res://engine/scripts/nodes/effects/quality_visible.gd" id="11"]
+[ext_resource type="Texture2D" uid="uid://b5qvo4xgdxnrv" path="res://objects/wide_clouds_moving/texture.png" id="12"]
+[ext_resource type="Script" path="res://objects/wide_clouds_moving/wide_clouds_moving.gd" id="13"]
+[ext_resource type="Texture2D" uid="uid://dboyy56p5qal4" path="res://objects/wide_clouds_moving/texture_alpha.png" id="14"]
+[ext_resource type="PackedScene" uid="uid://1do11cr84k7y" path="res://engine/objects/players/player.tscn" id="15"]
+[ext_resource type="TileSet" uid="uid://dtvs1rult8kbe" path="res://tilesets/overworld_green/overworld_green.tres" id="16"]
+[ext_resource type="TileSet" uid="uid://b5c17g3cwebar" path="res://tilesets/underground/underground.tres" id="17"]
+[ext_resource type="PackedScene" uid="uid://5ssr5jwpsldi" path="res://engine/objects/bumping_blocks/question_block/templates/Coin Question Block.tscn" id="18"]
+[ext_resource type="PackedScene" uid="uid://b8kgbn8f7lvf0" path="res://engine/objects/items/coin/coin.tscn" id="19"]
+[ext_resource type="Script" path="res://engine/objects/powerups/instance_powerup.gd" id="20"]
+[ext_resource type="PackedScene" uid="uid://2yepdgrhpmj3" path="res://engine/objects/bumping_blocks/brick/brick.tscn" id="21"]
+[ext_resource type="PackedScene" uid="uid://vqn6y17pt5mx" path="res://engine/objects/enemies/goombas/goomba.tscn" id="22"]
+[ext_resource type="PackedScene" uid="uid://cgw53vgjiurmx" path="res://objects/generic_water/generic_water_custom.tscn" id="23"]
+[ext_resource type="Texture2D" uid="uid://0atqoof1v43b" path="res://gfx/fancy_graphics/746.png" id="24"]
+[ext_resource type="PackedScene" uid="uid://bmkaknlavrwxp" path="res://tilesets/overworld_green/scenes/fence.tscn" id="25"]
+[ext_resource type="PackedScene" uid="uid://dor0tmdd8itya" path="res://tilesets/overworld_green/scenes/grass.tscn" id="26"]
+[ext_resource type="PackedScene" uid="uid://bfcf0c50beo18" path="res://stages/extra/click_bonus_game/objects/star_finder_cursor/star_finder_cursor.tscn" id="27"]
+[ext_resource type="PackedScene" uid="uid://cat0b6208nfnh" path="res://components/secrets_manager/secret_unlocker.tscn" id="28"]
+
+[sub_resource type="Curve2D" id="Curve2D_obbvm"]
+_data = {
+"points": PackedVector2Array(-12, -25, 12, 25, 233, 143, 1, 0, -1, 0, 235, 234, 12.5, 25, -12.5, -25, 233, 143)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_4j6us"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 111, 463, -90.69869995117188, 75.75679779052734, 90.69869995117188, -75.75679779052734, 61, 323)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_h3v11"]
+_data = {
+"points": PackedVector2Array(57.5, -169.5, -57.5, 169.5, 426, 142, 0, 0, 0, 0, 193, 157)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_ekyih"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 525, 235, 45, 2, -45, -2, 429, 267, 38, -1.5, -38, 1.5, 255, 147, 0, 0, 0, 0, 193, 183)
+}
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_q18w8"]
+colors = PackedColorArray(0.2313729971647263, 0.482353001832962, 0.6392160058021545, 1, 1, 1, 0.9882349967956543, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qrgok"]
+gradient = SubResource("Gradient_q18w8")
+width = 480
+
+[sub_resource type="Resource" id="Resource_0uqxv"]
+script = ExtResource("20")
+resource_local_to_scene = true
+creation_fallback_node = null
+creation_nodepack = ExtResource("19")
+trans_offset = Vector2(0, 0)
+trans_inheritances = 7
+trans_rotation = 0.0
+trans_scale = Vector2(1, 1)
+trans_skew = 0.0
+visi_z_index = 0
+visi_z_as_relative = true
+visi_y_sort_enabled = false
+custom_vars = {}
+custom_script = null
+
+[node name="BonusLevel-1" type="Control"]
+physics_interpolation_mode = 0
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1")
+metadata/_edit_lock_ = true
+
+[node name="MusicLoader" parent="." instance=ExtResource("2")]
+music = [ExtResource("3")]
+play_immediately = false
+start_from_sec = [0.0]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.4
+one_shot = true
+autostart = true
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="Node2D"]
+limit_left = 0
+limit_top = 0
+limit_right = 640
+limit_bottom = 480
+script = ExtResource("4")
+
+[node name="Heads-Up Display" parent="." instance=ExtResource("5")]
+visible = false
+
+[node name="Stars" type="Node2D" parent="."]
+z_index = 99
+
+[node name="Star6" parent="Stars" instance=ExtResource("6")]
+position = Vector2(64, 96)
+rotation = 0.4363319873809814
+scale = Vector2(0.25, 0.25)
+
+[node name="Star7" parent="Stars" instance=ExtResource("6")]
+position = Vector2(39, 360)
+rotation = 0.4363319873809814
+scale = Vector2(0.25, 0.25)
+
+[node name="Star12" parent="Stars" instance=ExtResource("6")]
+position = Vector2(135, 328)
+rotation = 0.4363319873809814
+scale = Vector2(0.25, 0.25)
+
+[node name="Star15" parent="Stars" instance=ExtResource("6")]
+position = Vector2(519, 371)
+rotation = 0.4363319873809814
+scale = Vector2(0.25, 0.25)
+
+[node name="Star5" parent="Stars" instance=ExtResource("6")]
+position = Vector2(583, 135)
+rotation = 0.4363319873809814
+scale = Vector2(0.25, 0.25)
+
+[node name="Path2D" type="Path2D" parent="Stars"]
+curve = SubResource("Curve2D_obbvm")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Stars/Path2D"]
+position = Vector2(233, 143)
+rotation = 1.123280048370361
+rotates = false
+script = ExtResource("7")
+
+[node name="Star9" parent="Stars/Path2D/PathFollow2D" instance=ExtResource("6")]
+position = Vector2(-0.9375920295715332, -2.668499946594238)
+rotation = -1.123280048370361
+scale = Vector2(0.300000011920929, 0.300000011920929)
+
+[node name="Path2D2" type="Path2D" parent="Stars"]
+position = Vector2(136, -120)
+curve = SubResource("Curve2D_4j6us")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Stars/Path2D2"]
+position = Vector2(111, 463)
+rotates = false
+loop = false
+script = ExtResource("7")
+reverse = true
+
+[node name="Star16" parent="Stars/Path2D2/PathFollow2D" instance=ExtResource("6")]
+position = Vector2(3.814700176008046e-05, 0)
+scale = Vector2(0.300000011920929, 0.300000011920929)
+
+[node name="Path2D3" type="Path2D" parent="Stars"]
+curve = SubResource("Curve2D_h3v11")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Stars/Path2D3"]
+position = Vector2(426, 142)
+rotation = 1.897850036621094
+rotates = false
+loop = false
+script = ExtResource("7")
+reverse = true
+
+[node name="Star13" parent="Stars/Path2D3/PathFollow2D" instance=ExtResource("6")]
+position = Vector2(-0.9469910264015198, 0.3212589919567108)
+rotation = -1.897850036621094
+scale = Vector2(0.300000011920929, 0.300000011920929)
+
+[node name="Path2D4" type="Path2D" parent="Stars"]
+curve = SubResource("Curve2D_ekyih")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Stars/Path2D4"]
+position = Vector2(525, 235)
+rotation = 2.819839954376221
+rotates = false
+loop = false
+script = ExtResource("7")
+reverse = true
+
+[node name="Star3" parent="Stars/Path2D4/PathFollow2D" instance=ExtResource("6")]
+position = Vector2(0.9487299919128418, 0.3162229955196381)
+rotation = -2.819839954376221
+scale = Vector2(0.300000011920929, 0.300000011920929)
+
+[node name="Node2D" type="Node2D" parent="Stars"]
+position = Vector2(301, 86)
+script = ExtResource("8")
+mov_offset = Vector2(70, 70)
+mov_moving = Vector2(-1, 1)
+offset_speed = 0.33
+
+[node name="Star10" parent="Stars/Node2D" instance=ExtResource("6")]
+rotation = 0.4363319873809814
+scale = Vector2(0.1500000059604645, 0.1500000059604645)
+
+[node name="Node2D2" type="Node2D" parent="Stars"]
+position = Vector2(292, 325)
+script = ExtResource("8")
+mov_offset = Vector2(-70, 60)
+mov_moving = Vector2(-1, -1)
+offset_speed = 0.33
+
+[node name="Star18" parent="Stars/Node2D2" instance=ExtResource("6")]
+rotation = 0.4363319873809814
+scale = Vector2(0.1500000059604645, 0.1500000059604645)
+
+[node name="Node2D3" type="Node2D" parent="Stars"]
+position = Vector2(101, 326)
+script = ExtResource("8")
+mov_offset = Vector2(-70, -70)
+mov_moving = Vector2(1, -1)
+offset_speed = 0.33
+
+[node name="Star17" parent="Stars/Node2D3" instance=ExtResource("6")]
+rotation = 0.4363319873809814
+scale = Vector2(0.1500000059604645, 0.1500000059604645)
+
+[node name="Node2D4" type="Node2D" parent="Stars"]
+position = Vector2(139, 144)
+script = ExtResource("8")
+mov_offset = Vector2(70, -70)
+mov_moving = Vector2(1, 1)
+offset_speed = 0.33
+
+[node name="Star7" parent="Stars/Node2D4" instance=ExtResource("6")]
+rotation = 0.4363319873809814
+scale = Vector2(0.1500000059604645, 0.1500000059604645)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(640, 0)
+rotation = 1.570799946784973
+scale = Vector2(1, 640)
+texture = SubResource("GradientTexture1D_qrgok")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="BigClouds" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(0, 320)
+texture = ExtResource("9")
+
+[node name="FancyBg" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(320, 240)
+texture = ExtResource("10")
+script = ExtResource("11")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(320, 57)
+texture = ExtResource("12")
+region_enabled = true
+region_rect = Rect2(0, 0, 784, 64)
+script = ExtResource("13")
+
+[node name="TextureAlpha" type="Sprite2D" parent="Sprite2D2"]
+position = Vector2(0, 32)
+texture = ExtResource("14")
+region_enabled = true
+region_rect = Rect2(0, 0, 784, 32)
+script = ExtResource("11")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+z_index = 25
+texture_repeat = 2
+position = Vector2(320, 32)
+texture = ExtResource("12")
+region_enabled = true
+region_rect = Rect2(0, 0, 784, 64)
+script = ExtResource("13")
+speed = 100.0
+
+[node name="Mario" parent="." instance=ExtResource("15")]
+position = Vector2(576, 400)
+collision_layer = 0
+
+[node name="Layer0" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAOAAcAAwAAAAAAAAAOAAgAAwAAAAEAAAAOAAkAAwAAAAEAAAAOAAoAAwAAAAEAAAAOAAsAAwAAAAEAAAAOAAwAAwAAAAEAAAAOAA0AAAAAAAAAAAAOAA4AAAAAAAEAAAAOAA8AAAAAAAIAAAAPAAcAAwABAAAAAAAPAAgAAwABAAEAAAAPAAkAAwABAAEAAAAPAAoAAwABAAEAAAAPAAsAAwABAAEAAAAPAAwAAwABAAEAAAAPAA0AAAACAAAAAAAPAA4AAAACAAEAAAAPAA8AAAACAAIAAAARAA0AAwAAAAAAAAARAA4AAwAAAAEAAAASAA0AAwABAAAAAAASAA4AAwABAAEAAAAEAA8AAAACAAIAAAAEAA4AAAACAAEAAAAEAA0AAAACAAAAAAADAA8AAAABAAIAAAADAA4AAAABAAEAAAADAA0AAAABAAAAAAACAA8AAAAAAAIAAAACAA4AAAAAAAEAAAACAA0AAAAAAAAAAAADAAsAAwAAAAAAAAADAAwAAwAAAAEAAAAEAAsAAwABAAAAAAAEAAwAAwABAAEAAAA=")
+tile_set = ExtResource("16")
+metadata/_edit_lock_ = true
+
+[node name="Layer2" type="TileMapLayer" parent="."]
+use_parent_material = true
+position = Vector2(0, -17)
+tile_map_data = PackedByteArray("AAAKAAIAAwAAAAEAAAAKAAMAAwAAAAIAAAALAAIAAwABAAEAAAALAAMAAwABAAIAAAAKAAEAAwAAAAEAAAALAAEAAwABAAEAAAAQAA8AAgAAAAAADAA=")
+tile_set = ExtResource("16")
+metadata/_edit_lock_ = true
+
+[node name="Layer3" type="TileMapLayer" parent="."]
+use_parent_material = true
+position = Vector2(16, 0)
+tile_map_data = PackedByteArray("AAALAAcAAAACAAEAAAALAAYAAAACAAAAAAAKAAcAAAABAAEAAAAKAAYAAAABAAAAAAAJAAcAAAABAAEAAAAJAAYAAAABAAAAAAAIAAcAAAABAAEAAAAIAAYAAAABAAAAAAAHAAcAAAABAAEAAAAHAAYAAAABAAAAAAAGAAcAAAABAAEAAAAGAAYAAAABAAAAAAAFAAcAAAABAAEAAAAFAAYAAAABAAAAAAAEAAcAAAABAAEAAAAEAAYAAAABAAAAAAADAAcAAAABAAEAAAADAAYAAAABAAAAAAACAAcAAAAAAAEAAAACAAYAAAAAAAAAAAACAAgAAAAAAAIAAAADAAgAAAABAAIAAAAEAAgAAAABAAIAAAAFAAgAAAABAAIAAAAGAAgAAAABAAIAAAAHAAgAAAABAAIAAAAIAAgAAAABAAIAAAAJAAgAAAABAAIAAAAKAAgAAAABAAIAAAALAAgAAAACAAIAAAA=")
+tile_set = ExtResource("16")
+metadata/_edit_lock_ = true
+
+[node name="Layer4" type="TileMapLayer" parent="."]
+use_parent_material = true
+position = Vector2(16, 0)
+tile_map_data = PackedByteArray("AAACAAgAAAAAAAAAAAADAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAFAAgAAAAAAAAAAAAGAAgAAAAAAAAAAAAHAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAJAAgAAAAAAAAAAAAKAAgAAAAAAAAAAAALAAgAAAAAAAAAAAA=")
+tile_set = ExtResource("17")
+metadata/_edit_lock_ = true
+
+[node name="QuestionBlock" parent="." instance=ExtResource("18")]
+position = Vector2(528, 112)
+result = SubResource("Resource_0uqxv")
+
+[node name="Brick" parent="." instance=ExtResource("21")]
+position = Vector2(496, 112)
+
+[node name="Brick2" parent="." instance=ExtResource("21")]
+position = Vector2(464, 112)
+
+[node name="Brick4" parent="." instance=ExtResource("21")]
+position = Vector2(176, 368)
+metadata/_edit_lock_ = true
+
+[node name="Brick5" parent="." instance=ExtResource("21")]
+position = Vector2(208, 368)
+metadata/_edit_lock_ = true
+
+[node name="Goomba" parent="." instance=ExtResource("22")]
+position = Vector2(192, 336)
+speed = Vector2(0, 0)
+
+[node name="Goomba2" parent="." instance=ExtResource("22")]
+position = Vector2(192, 176)
+speed = Vector2(0, 0)
+
+[node name="Goomba3" parent="." instance=ExtResource("22")]
+position = Vector2(288, 176)
+speed = Vector2(0, 0)
+
+[node name="Goomba4" parent="." instance=ExtResource("22")]
+position = Vector2(384, 176)
+speed = Vector2(0, 0)
+
+[node name="Water" parent="." instance=ExtResource("23")]
+
+[node name="Node2D2" type="Node2D" parent="."]
+script = ExtResource("11")
+
+[node name="FancyBush16" type="Sprite2D" parent="Node2D2"]
+z_index = 1
+position = Vector2(32, 192)
+texture = ExtResource("24")
+
+[node name="FancyBush17" type="Sprite2D" parent="Node2D2"]
+z_index = -1
+position = Vector2(419, 416)
+texture = ExtResource("24")
+
+[node name="Fence" parent="." instance=ExtResource("25")]
+position = Vector2(336, 176)
+
+[node name="Grass" parent="." instance=ExtResource("26")]
+z_index = 1
+position = Vector2(99, 400)
+
+[node name="Grass3" parent="." instance=ExtResource("26")]
+z_index = 1
+position = Vector2(131, 176)
+
+[node name="Grass2" parent="." instance=ExtResource("26")]
+z_index = 1
+position = Vector2(480, 400)
+
+[node name="StarFinderCursor" parent="." instance=ExtResource("27")]
+camera_ref = NodePath("../Node2D/Camera2D")
+
+[node name="SecretUnlocker" parent="." instance=ExtResource("28")]
+secrets = ["all bonus levels beaten"]
+progress_by_id = "two"
+progress_to = 5
+
+[connection signal="level_complete" from="." to="SecretUnlocker" method="progress_secret"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

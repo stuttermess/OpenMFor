@@ -1,0 +1,114 @@
+[gd_scene load_steps=17 format=4]
+
+[ext_resource type="Script" path="res://objects/volcano/bob_omb/explosion/explosion_area.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://d2syl74yiymom" path="res://objects/volcano/bob_omb/explosion/explosion.png" id="2"]
+[ext_resource type="Script" path="res://engine/objects/projectiles/projectile_attack.gd" id="3"]
+[ext_resource type="Script" path="res://engine/scripts/nodes/enemies/enemy_attacked.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://oe7i3cief0g" path="res://engine/objects/enemies/_dead/enemy_killed.tscn" id="5"]
+[ext_resource type="Script" path="res://engine/objects/enemies/_dead/prefabs/do_killed.gd" id="6"]
+[ext_resource type="Script" path="res://engine/scripts/resources/instance_node2d/instance_node2d.gd" id="7"]
+[ext_resource type="AudioStream" uid="uid://be3uvqev2c1p6" path="res://engine/objects/players/prefabs/sounds/kick.wav" id="8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_liob6"]
+atlas = ExtResource("2")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_roio6"]
+atlas = ExtResource("2")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmtlt"]
+atlas = ExtResource("2")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nw1s8"]
+atlas = ExtResource("2")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2at77"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_liob6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_roio6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmtlt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nw1s8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1dq63"]
+radius = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0j8al"]
+radius = 64.0
+
+[sub_resource type="Resource" id="Resource_1cgdg"]
+script = ExtResource("7")
+resource_local_to_scene = true
+creation_nodepack = ExtResource("5")
+trans_offset = Vector2(0, 0)
+trans_inheritances = 7
+trans_rotation = 0.0
+trans_scale = Vector2(1, 1)
+trans_skew = 0.0
+visi_z_index = 0
+visi_z_as_relative = true
+visi_y_sort_enabled = false
+custom_vars = {
+"death": NodePath("../../AnimatedSprite2D"),
+"death_speed": Vector2(0, -250)
+}
+custom_script = ExtResource("6")
+
+[node name="ExplosionArea" type="Area2D"]
+collision_mask = 17
+script = ExtResource("1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_2at77")
+autoplay = "default"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-64, 16, -64, -16, -48, -48, -16, -64, 16, -64, 48, -48, 64, -16, 64, 16, 48, 48, 16, 64, -16, 64, -48, 48)
+
+[node name="Attack" type="ShapeCast2D" parent="."]
+shape = SubResource("CircleShape2D_1dq63")
+target_position = Vector2(0, 0)
+max_results = 8
+collision_mask = 3
+collide_with_areas = true
+script = ExtResource("3")
+killer_type = &"hammer"
+trigger_enemy_failed_signal = false
+
+[node name="Body" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 7
+
+[node name="Collision" type="CollisionShape2D" parent="Body"]
+shape = SubResource("CircleShape2D_0j8al")
+debug_color = Color(0, 0.6431369781494141, 0.3098039925098419, 0.4196079969406128)
+
+[node name="EnemyAttacked" type="Node" parent="Body"]
+script = ExtResource("4")
+stomping_standard = Vector2(0, 0)
+killing_immune = {
+"boomerang": false
+}
+killing_creation = SubResource("Resource_1cgdg")
+killing_scores = 100
+killing_sound_succeeded = ExtResource("8")
+turn_into_coin_on_level_end = false
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

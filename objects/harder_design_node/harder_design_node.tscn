@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=4]
+
+[ext_resource type="Script" path="res://objects/harder_design_node/harder_design_node.gd" id="1"]
+
+[node name="HarderDesignNode" type="Node2D"]
+modulate = Color(1, 0.5294119715690613, 0.5215690135955811, 1)
+script = ExtResource("1")

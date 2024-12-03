@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=4]
+
+[ext_resource type="Script" path="res://stages/extra/lost_map/scripts/lost_map_title.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://d3srfe2r6fg2u" path="res://engine/objects/core/music_loader/music_loader.tscn" id="2"]
+[ext_resource type="AudioStream" uid="uid://dfmmqrn3k5bbc" path="res://music/lostmap/lostmap_intro.ogg" id="3"]
+[ext_resource type="Texture2D" uid="uid://1wql5cqgi0pa" path="res://stages/extra/lost_map/gfx/lostmap_title_background.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://dydqbjxrnmy8p" path="res://stages/extra/lost_map/gfx/lostmap_title_mario.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://c0vrbxhu1er6s" path="res://stages/extra/lost_map/gfx/lostmap_title_press_enter.png" id="6"]
+[ext_resource type="Script" path="res://engine/scripts/nodes/effects/blinking_canvas_item.gd" id="7"]
+[ext_resource type="Texture2D" uid="uid://d04grr8l8d42i" path="res://stages/extra/lost_map/gfx/lostmap_title_border.png" id="8"]
+
+[node name="LostMapTitle" type="Node2D"]
+script = ExtResource("1")
+goto_scene = "res://stages/extra/lost_map/lost_map_map.tscn"
+
+[node name="MusicLoader" parent="." instance=ExtResource("2")]
+music = [ExtResource("3")]
+
+[node name="LostmapTitleBackground" type="Sprite2D" parent="."]
+position = Vector2(320, 240)
+texture = ExtResource("4")
+
+[node name="LostmapTitleMario" type="Sprite2D" parent="."]
+position = Vector2(320, 323)
+texture = ExtResource("5")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+layer = 1
+
+[node name="Node2D" type="Node2D" parent="ParallaxBackground"]
+
+[node name="LostmapTitlePressEnter" type="Sprite2D" parent="ParallaxBackground/Node2D"]
+position = Vector2(347, 440)
+texture = ExtResource("6")
+script = ExtResource("7")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 40)
+
+[node name="LostmapTitleBorder" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(616, -64)
+texture = ExtResource("8")
+centered = false
+
+[node name="LostmapTitleBorder2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(0, -64)
+texture = ExtResource("8")
+centered = false
+flip_h = true
+
+[node name="Label" type="RichTextLabel" parent="ParallaxBackground"]
+offset_left = 53.0
+offset_top = 195.0
+offset_right = 193.0
+offset_bottom = 256.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = 0
+theme_override_font_sizes/italics_font_size = 10
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "[center][i]
+HELLO IN MARIO
+FOREVER THE LOST MAP!"
+autowrap_mode = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
